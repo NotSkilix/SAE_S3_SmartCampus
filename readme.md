@@ -16,6 +16,9 @@ Contenu :
   - [3. Mise en place des jeux de données](#3-mise-en-place-des-jeux-de-données)
 - [Accéder à l'application web](#accéder-à-lapplication-web)
 - [Arrêt de la stack](#arrêt-de-la-stack)
+- [Identifiants](#identifiants)
+  - [Technicien](#technicien)
+  - [Chargé de mission](#charge-de-mission)
 
 --- 
 
@@ -66,7 +69,12 @@ Puis, positionnez-vous dans le dossier du projet :
 cd sfapp
 ```
 
-Une fois dans le dossier `/app/sfapp`, exécuter les migrations pour construire la base de données :
+N'oubliez pas d'installer les dépendances du projet
+```bash
+composer install
+```
+
+Une fois les dépendances installées, exécuter les migrations pour construire la base de données :
 ```bash
 php bin/console doc:mig:mig
 ```
@@ -94,9 +102,30 @@ http://localhost:8000/
 
 Si vous êtes encore dans un terminal de la stack, vous pouvez le quitter à l'aide de la commande `exit`.
 
-Pour arrêter le conteneur, il vous suffit d'exécuter la commande suivante :
+Pour simplement arrêter la stack docker:
+```bash
+docker compose stop
+```
+
+Pour arrêter et détruire la stack, il vous suffit d'exécuter la commande suivante :
 ```bash
 docker compose down
 ```
 
-Pour relancer le conteneur, il vous suffit de réitérer les étapes depuis l'étape de [démarrage de la stack](#2-démarrer-la-stack).
+Pour relancer le conteneur (après un `docker compose stop`), il vous suffit de faire la commande suivante:
+```bash
+docker compose up -d
+```
+
+## Identifiants
+Comme vous l'avez sûrement remarqué, vous pouvez vous connecter en bas à droite de l'écran: \
+![image](https://github.com/user-attachments/assets/3e2dcfbb-9237-4e63-a4ff-ab348faa4371) \
+Cela permet d'avoir l'affichage du **technicien** ainsi que du **chargé de mission**.
+
+### Technicien
+- **Identifiant:** `technicien`
+- **Mot de passe:** `smart-campus`
+
+### Chargé de mission
+- **Identifiant:** `chargemission`
+- **Mot de passe:** `smart-campus`
