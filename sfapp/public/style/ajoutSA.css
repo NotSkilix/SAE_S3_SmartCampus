@@ -1,0 +1,86 @@
+/* --- NAV GAUCHE --- */
+#nav-lien-capteurs{
+    opacity: 100%;
+}
+
+#nav-lien-capteurs .nav-lien-selection{
+    border-left: 5px solid var(--blanc);
+    height: 100%;
+}
+
+#page-body
+{
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* --- FORMULAIRE ---*/
+.form-content {
+    display: flex;
+    flex-direction: column;
+    padding: 2.5vw 2vw;
+    width: 60vw;
+    height: 15vh;
+    overflow: hidden;
+}
+
+.form-content h2 {
+    padding-bottom: 2.5vw;
+    font-size: 1.8rem;
+}
+
+form {
+    padding-bottom: 2.1vw;
+}
+
+.form-part{
+    margin-bottom: 1.2vw;
+}
+
+.form-part p{
+    font-size: 1.8vw;
+    padding-bottom: 0.5vw;
+}
+
+.form-part-title{
+    display: flex;
+    flex-direction: row;
+    border-bottom: 2px solid var(--input);
+    align-items: center;
+    margin-bottom: 1vw;
+}
+
+/* input du formulaire */
+#add_sa {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+#add_sa div {
+    display: flex;
+    width: 48%;
+}
+
+#add_sa div label {
+    padding-top: 2px;
+    margin-right: 10px;
+}
+
+#add_sa div input {
+    flex: 1;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 8px;
+    font-family: Poppins, serif;
+    background-color: var(--input);
+}
+
+#add_sa div input::placeholder {
+    font-style: italic;
+    color: var(--input_texte);
+}
+

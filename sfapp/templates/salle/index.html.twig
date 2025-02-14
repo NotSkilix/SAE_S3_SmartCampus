@@ -1,0 +1,99 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Salle{% endblock %}
+
+{% block content %}
+    <link rel="stylesheet" href="{{ asset('style/salle.css') }}">
+{% endblock %}
+
+{% block header %}
+    <div class="header-titre">
+        <p id="header-titre"><strong>LISTE DES SALLES</strong></p><div id="bar"></div><p id="header-titre-batiment">BATIMENT : <strong>{{ batiment_nom }}</strong></p>
+    </div>
+{% endblock %}
+
+{% block body %}
+    <!-- popup de confirmation -->
+    <div id="message-confirmation">
+        <p>Êtes-vous sûr de vouloir désassocier ce SA ?</p>
+        <button id="confirm-cancel-button" class="button-type2 button-cancel"> ANNULER</button>
+        <button id="confirm-delete-button" class="button-type2 button-confirm" data-delete-salle="true"> SUPPRIMER</button>
+    </div>
+    
+    <div id="page-body">
+        <div id="etage-salle">
+
+            <div id="filter">
+                <!-- Barre de recherche -->
+                <input
+                    type="text"
+                    id="search-bar"
+                    placeholder="Rechercher une salle..."
+                    >
+
+                <!-- Liste étage -->
+                <select id="list-etage" class="list-options">
+                    {% for etage in  etages%}
+                        <option value="{{ etage.id }}" data-etage-nomComplet="{{ etage.nomComplet }}">{{ etage.nomComplet }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <!-- Liste des étages-->
+            <div class="list-etage-container container">
+                <div class="scrollbar-salle">
+                    <div id="list-etage-container"></div>
+                </div>
+                {% if is_granted('ROLE_TECHNICIEN') %}
+                <button class="bouton-ajout" onclick="location.href = '{{ path("app_salle_addNewSalle") }}';">
+                    <!-- circle-plus icon -->
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                        <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM232 344l0-64-64
+                        0c-13.3 0-24-10.7-24-24s10.7-24 24-24l64 0 0-64c0-13.3 10.7-24 24-24s24 10.7 24 24l0 64 64
+                        0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-64 0 0 64c0 13.3-10.7 24-24 24s-24-10.7-24-24z"/>
+                    </svg>
+                    <span class="bouton-ajout-texte">AJOUTER</span>
+                </button>
+                {% endif %}
+            </div>
+
+            {% if is_granted('ROLE_TECHNICIEN') %}
+            <div id="redirect-buttons">
+                <div id="redirect-plan-button" class="redirect-button">
+                    <svg class="redirect-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                        <path d="M438.6 150.6c12.5-12.5 12.5-32.8 0-45.3l-96-96c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8
+                        0 45.3L338.7 96 32 96C14.3 96 0 110.3 0 128s14.3 32 32 32l306.7 0-41.4 41.4c-12.5 12.5-12.5 32.8
+                        0 45.3s32.8 12.5 45.3 0l96-96zm-333.3 352c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 416
+                        416 416c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0 41.4-41.4c12.5-12.5 12.5-32.8
+                        0-45.3s-32.8-12.5-45.3 0l-96 96c-12.5 12.5-12.5 32.8 0 45.3l96 96z"/>
+                    </svg>
+                    <p> Voir le plan associé </p>
+                </div>
+                <div id="redirect-diagnostic-button" class="redirect-button">
+                    <!-- image diagnostic -->
+                    <svg class="redirect-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M160 80c0-26.5 21.5-48 48-48l32 0c26.5 0 48 21.5 48 48l0 352c0 26.5-21.5 48-48 48l-32 0c-26.5 0-48-21.5-48-48l0-352zM0 272c0-26.5 21.5-48 48-48l32 0c26.5 0 48 21.5 48 48l0 160c0 26.5-21.5 48-48 48l-32 0c-26.5 0-48-21.5-48-48L0 272zM368 96l32 0c26.5 0 48 21.5 48 48l0 288c0 26.5-21.5 48-48 48l-32 0c-26.5 0-48-21.5-48-48l0-288c0-26.5 21.5-48 48-48z"/></svg>
+                    <p> Voir le diagnostic</p>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+        <!-- Informations supplémentaires lorsqu'on clique sur une salle -->
+        <div id="salle-details"></div>
+    </div>
+
+{% endblock %}
+
+{% block script %}
+    {# Script pour passer les rôles de l'utilisateur au JS #}
+    <script>
+        const rolesUtilisateur =
+        {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+            {{ app.user.roles | json_encode | raw }}
+        {% else %}
+            []
+        {% endif %}
+        ;
+    </script>
+    <script src="{{ asset('js/affichageSalle.js') }}"></script>
+    <script src="{{ asset('js/API.js') }}"></script
+{% endblock %}

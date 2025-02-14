@@ -50,3 +50,10 @@
 
 # Embedded web-server pid file
 /.web-server-pid
+
+
+/.idea/
+.DS_Store
+**/.DS_Store
+.env
+*Zone.Identifier

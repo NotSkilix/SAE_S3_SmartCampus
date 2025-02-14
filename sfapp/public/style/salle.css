@@ -1,0 +1,433 @@
+/* --- NAV GAUCHE --- */
+#nav-lien-salles .nav-lien-selection{
+    border-left: 5px solid var(--blanc);
+    height: 100%;
+}
+
+#nav-lien-salles{
+    opacity: 100%;
+}
+
+#page-body
+{
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+/* --- DETAILS DES SALLES --- */
+#salle-details{
+    transform: scale(0);
+    transition: transform 0.7s;
+}
+
+.details-salle{
+    display: flex;
+    flex-direction: column;
+    width: 30vw;
+    height: 82vh;
+    padding: 1vw;
+    background-color: var(--container);
+    border-radius: 0.8vw;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.25);
+    gap : 1.3vh;
+
+}
+
+/* titre des détails */
+.titre{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 0.8vw;
+    background-color: var(--blanc);
+    padding: 1vh;
+    height: 8%;
+    font-size: 1.5vw;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+
+}
+
+.titre h4{
+    color: var(--input_texte);
+    font-weight: normal;
+}
+
+.titre h3{
+    margin-left: 0.5vw;
+    font-weight: normal;
+}
+
+/* --- DETAILS DES SALLES (partie droite) --- */
+
+/* --- DONNEES DES CAPTEURS --- */
+.info-salle
+{
+    background-color: var(--blanc);
+
+    padding: 1vh;
+    border-radius: 10px;
+    height: 40%;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+}
+
+/** Fait par Axel, peut être à changer*/
+.info-salle-without-sa
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--blanc);
+    padding: 1vh;
+    border-radius: 10px;
+    height: 40%;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+    text-align: center;
+}
+
+.sous-info-salle{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap:1vw;
+    margin-top: 0.8vw;
+    font-size: 1vw;
+
+}
+
+.temperature-sense{
+    background-color: rgba(239, 239, 239, 0.5);
+    width: 90%;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+    gap : 0.5vw;
+    padding: 0.3vw;
+    border-top-right-radius: 0.8vw;
+    border-bottom-left-radius: 0.8vw;
+}
+
+.co2-sense{
+    background-color: rgba(239, 239, 239, 0.5);
+    width: 90%;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+    gap : 0.5vw;
+    padding: 0.3vw;
+    border-top-right-radius: 0.8vw;
+    border-bottom-left-radius: 0.8vw;
+}
+
+.humidite-sense{
+    background-color: rgba(239, 239, 239, 0.5);
+    width: 90%;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+    gap : 0.5vw;
+    padding: 0.3vw;
+    border-top-right-radius: 0.8vw;
+    border-bottom-left-radius: 0.8vw;
+}
+
+.luminosite-sense{
+    background-color: rgba(239, 239, 239, 0.5);
+    width: 90%;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+    gap : 0.5vw;
+    padding: 0.3vw;
+    border-top-right-radius: 0.8vw;
+    border-bottom-left-radius: 0.8vw;
+}
+
+/* séparateur entre les svg et les données des capteurs */
+.sous-info-salle_separator{
+    border-left: 0.15vw solid;
+}
+
+.donnee-date{
+    width: 100%;
+    height : 2vw;
+    display : flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size : 1.2vw;
+}
+
+.date{
+    background-color: #2BA801;
+    border-radius: 0.5vw;
+    color : var(--blanc);
+    font-size : 1vw;
+    padding :0.3vw;
+}
+
+/* --- INFOS SUR LA SALLE --- */
+.info-detail-salle{
+    display: flex;
+    flex-direction: row;
+    background-color: var(--blanc);
+    justify-content: space-around;
+    align-items: center;
+    height: 25%;
+    padding: 1vh;
+    border-radius: 0.8vw;
+    font-size: 0.8vw;
+    font-weight: 400;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+}
+
+/* partie droite et gauche des infos sur les salle */
+.section1, .section2 {
+    display: flex;
+    flex-direction: column; /* Chaque section organise ses lignes verticalement */
+    gap: 10px; /* Espacement vertical entre les lignes */
+}
+
+/* bouton de redirection vers le plan */
+#redirect-buttons{
+    display: flex;
+    justify-content: space-between;
+    height: 10vh;
+}
+
+.redirect-button{
+    display: flex;
+    font-weight: 600;
+    background-color: var(--blanc);
+    height: 75%;
+    width: 45%;
+    padding: 10px;
+    border-radius: 0.8vw;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+    gap:1vw;
+    transition: 0.3s;
+    cursor: pointer;
+    transform: scale(0);
+}
+
+.redirect-button:hover{
+    background-color: var(--bouton_inactif);
+    color: var(--container);
+}
+
+.redirect-svg{
+    fill : #2BA801;
+    width: 25px;
+    height: 25px;
+}
+
+/* chaque ligne d'informations */
+.ligne {
+    display: flex;
+    align-items: center; /* Centre verticalement le contenu */
+}
+
+/* --- LISTE DES SALLES --- */
+#etage-salle{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.list-etage-container{
+    margin-top: -1px;
+    width: 45vw;
+    height: 60vh;
+    padding: 2vh 1vw;
+}
+
+.scrollbar-salle {
+    overflow: auto; /* Assurez-vous que c'est "auto" ou "scroll" */
+    width: 100%;
+    height: 85%;
+}
+
+#salle{
+    transition: 0.3s;
+    display : flex;
+    justify-content: space-between;
+    gap : 0.8vw;
+    background-color: var(--blanc);
+    display : flex;
+    border-radius: 15px;
+    margin: 1vw 1.5vw 1.5vw 1vw;
+    padding: 1vw;
+    align-items: center;
+    border : 1px solid gray;
+    font-size: 1.3vw;
+    box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.25);
+}
+
+#salle:hover{
+    transition: 0.3s;
+    cursor: pointer;
+    padding: 1.2vw;
+    margin: 0.8vw 1.3vw 1.3vw 0.8vw;
+}
+
+/* boutons de suppression et modif d'une salle */
+.buttons-display {
+    display : flex;
+    justify-content: flex-end;
+    padding-left: 5vw;
+    gap : 0.5vw;
+}
+
+/* infos sur la salle */
+.salle-container-infos{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+
+}
+
+.salle-container-infos *{
+    margin-right: 0.5vw;
+}
+
+/* nombre de sa */
+#nombre-sa-attribue{
+    font-weight: bold;
+    font-size: 1.1vw;
+    display : flex;
+    align-items: center;
+}
+
+#salle-sa-attribue{
+    font-size: 1.1vw;
+    display : flex;
+    align-items: center;
+}
+
+.ligne-séparatrice-sa{
+    border-left: black solid 0.15vw;
+    height : 1.5vw;
+    display : flex;
+    align-items: center;
+}
+
+/* --- FILTRES --- */
+#search-bar{
+    width: 47%;
+}
+
+#list-etage{
+    width: 47%;
+}
+
+/* décalage exceptionnel du bouton d'ajout */
+.bouton-ajout {
+    margin-left: 1vw;
+}
+
+span{
+    font-size: 1vw;
+    margin-left: 0.3vw;
+}
+
+/* texte dans les balises span */
+.donnée {
+    color : rgba(0, 0, 0, 0.5);
+}
+
+.advice{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.8vw;
+    height: 25%;
+    background-color: var(--blanc);
+    padding: 1vh;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+    flex-wrap : wrap;
+    overflow: auto;
+
+}
+
+#advice-box{
+    width: 23vw;
+    height: 12vh;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ombre subtile */
+    background-color: rgba(239, 239, 239, 0.5);
+    border-radius: 0.8vw;
+    display : flex;
+    flex-wrap: wrap;
+    margin-bottom: 2vh;
+
+
+}
+    #conseil-type{
+        background-color: #D9D9D9;
+        width: 50%;
+        height: 60%;
+        border-top-left-radius: 0.8vw;
+        display :flex;
+        flex-wrap : wrap;
+        justify-content: center;
+        align-items: center;
+
+    }
+
+    #conseil-type p {
+        font-size: 1.1vw;
+        font-weight: 600;
+        margin-left:0.3vw;
+    }
+
+    #conseil-description{
+        display: flex;
+        width: 10vw;
+        font-weight: 600;
+        height: 60%;
+        font-size: 0.8vw;
+        align-items: center;
+        gap: 1vw;
+        padding-left: 1vw;
+
+    }
+
+    #conseil-text{
+        width : 100%;
+        background-color: #686363;
+        color : white;
+        font-weight: 500;
+        height: 40%;
+        border-bottom-left-radius: 0.8vw;
+        border-bottom-right-radius: 0.8vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 0.7vw;
+    }
+
+    #conseil-text p {
+        width: 90%;
+    }
+
+    #advice-title{
+        display : flex;
+        font-size : 1.5vw;
+        width: 90%;
+        padding-left: 2vw;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 0.8vw;
+    }
+
+    #advice-title svg {
+        width: 2.5vh;
+        height: 1.5vw;
+    }
+
+    #advice-title p {
+        font-size : 1.2vw;
+    }
+

@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Plan{% endblock %}
+
+{% block content %}
+    <link rel="stylesheet" href="{{ asset('style/plan.css') }}">
+{% endblock %}
+
+{% block header %}
+    <div class="header-titre">
+        <p id="header-titre"><strong>PLAN</strong></p><div id="bar"></div><p id="header-titre-batiment">batiment : <strong>{{ batiment_nom }}</strong></p>
+    </div>
+{% endblock %}
+
+{% block body %}
+    <!-- popup de confirmation -->
+    <div id="message-confirmation">
+        <p>Etes-vous sur de vouloir désassocier ce SA ?</p>
+        <button id="confirm-cancel-button" class="button-type2 button-cancel"> ANNULER</button>
+        <button id="confirm-delete-button" class="button-type2 button-confirm" data-delete-salle="true"> SUPPRIMER</button>
+    </div>
+
+    <div id="page-body">
+        <div id="filter">
+            <!-- Barre de recherche -->
+            <input
+                type="text"
+                id="search-bar"
+                placeholder="Rechercher une salle ou un sa..."
+                >
+
+            <!-- Liste étage -->
+            <select id="list-etat" class="list-options">
+                <option value="tout">Tout</option>
+                {% for etat in  etats %}
+                    <option value="{{ etat.value }}">{{ etat.value }}</option>
+                {% endfor %}
+            </select>
+
+            <div id="separator"></div>
+
+            {% if is_granted("ROLE_CHARGEMISSION") %}
+            <a href="{{ path('app_plan_nouveau', {'idSalle':-1}) }}" class="plan-btn">Créer une association</a>
+            {% endif %}
+
+            <a href="{{ path('app_plan_historique') }}" class="plan-btn">Historique</a>
+        </div>
+
+        <!-- Liste des plans -->
+        <div id="plan-list"></div>
+    </div>
+{% endblock %}
+
+{% block script %}
+    {# Script pour passer les rôles de l'utilisateur au JS #}
+    <script>
+        const rolesUtilisateur =
+        {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+            {{ app.user.roles | json_encode | raw }}
+        {% else %}
+            []
+        {% endif %}
+        ;
+    </script>
+
+    <script src="{{ asset('js/affichagePlan.js') }}"></script>
+{% endblock %}

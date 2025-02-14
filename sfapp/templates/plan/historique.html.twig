@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Historique{% endblock %}
+
+{% block content %}
+    <link rel="stylesheet" href="{{ asset('style/historique.css') }}">
+{% endblock %}
+
+{% block header %}
+    <div class="header-titre">
+        <p id="header-titre"><strong>HISTORIQUE</strong></p><div id="bar"></div><p id="header-titre-batiment">batiment : <strong>{{ batiment_nom }}</strong></p>
+    </div>
+{% endblock %}
+
+{% block body %}
+    <div id="page-body">
+
+        <!-- Liste des plans -->
+        <div id="plan-list" class="container">
+            <!-- Barre de recherche -->
+            <div id="recherche">
+                <input type="text" id="search-bar" placeholder="Rechercher une salle ou un sa...">
+                <button type="button" id="search-btn" class="button-type1 button-confirm">Rechercher</button>
+            </div>
+            <div id="plan-list-limit">
+            {% for plan in plans %}
+                <div class="plan">
+                    <p>SALLE {{ plan.salle.nom }}</p>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M438.6 150.6c12.5-12.5 12.5-32.8 0-45.3l-96-96c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.7 96 32 96C14.3 96 0 110.3 0 128s14.3 32 32 32l306.7 0-41.4 41.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l96-96zm-333.3 352c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 416 416 416c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0 41.4-41.4c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-96 96c-12.5 12.5-12.5 32.8 0 45.3l96 96z"/></svg>
+                    <p>SA {{ plan.SA.nom }}</p>
+                    <p class="date">attribué le {{ plan.dateAssociation|date('d/m/Y') }}</p>
+                    <p> | </p>
+                    {% if plan.dateDesassociation is null %}
+                        <p class="date">- - -</p>
+                    {% else %}
+                        <p class="date">enlevé le {{ plan.dateDesassociation|date('d/m/Y')}}</p>
+                    {% endif %}
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+
+        <a href="{{ path('app_plan') }}" class="button-type1 button-cancel" id="delete-btn">
+            FERMER
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                <path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6
+                    105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0
+                    45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256
+                    342.6 150.6z"/>
+            </svg>
+        </a>
+        
+    </div>
+
+    <script src="{{ asset('js/rechercheHistorique.js') }}"></script>
+
+{% endblock %}

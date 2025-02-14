@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Associer des SA à la salle{% endblock %}
+
+{% block content %}
+    <link rel="stylesheet" href="{{ asset('style/ajoutSalle.css') }}">
+{% endblock %}
+
+{% block header %}
+    <p id="header-titre"><strong>ASSOCIER DES SA</strong></p>
+{% endblock %}
+
+{% block body %}
+<div id="page-body">
+    <div id="form-content">
+        <div class="form-part">
+            <div class="form-part-title">
+                <p>Attribution des systèmes d'acquisition : </p>
+            </div>
+            <div id="form-part-list-sa">
+                {% for i in plans %}
+                    <div class="form-part-sa">
+                        {{ i.SA.id }}
+                        <a href="{{ path('app_remove_sa', {'idSA': i.SA.id, 'idSalle':idSalle}) }}">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                                <path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6
+                                            105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0
+                                            45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256
+                                            342.6 150.6z"/>
+                            </svg>
+                        </a>
+                    </div>
+                {% endfor %}
+                {# affiche la liste des sa disponible #}
+                <button type="button" onclick="displayAvailableSA()" id="form-part-ajout-sa">+</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="edit-button-container">
+    <a href="{{ path('app_salle') }}" class="bouton-crud" id="edit-btn">
+        RETOUR
+    </a>
+</div>
+
+<div id="available-sa-list">
+    <div id="available-sa-list-container">
+        {% for i in availableSA %}
+            <a href="{{ path('app_add_sa', {'idSA':i.id, 'idSalle':idSalle}) }}" class="btn-chose-sa-link">
+                id : {{ i.id }} | nom : {{ i.nom }}
+            </a>
+        {% endfor %}
+        <button id="btn-hide-sa" onclick="hideAvailableSA()">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                <path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6
+                    105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0
+                    45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256
+                    342.6 150.6z"/>
+            </svg>
+        </button>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block script %}
+    <script src="{{ asset('js/gestionAffichageListeSADisponibles.js') }}"></script>
+{% endblock %}

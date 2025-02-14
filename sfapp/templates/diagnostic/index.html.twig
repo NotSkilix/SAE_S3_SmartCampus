@@ -1,0 +1,155 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Diagnostic{% endblock %}
+
+{% block header %}
+    <div class="header-titre">
+        <p id="header-titre"><strong>DIAGNOSTIC</strong></p><div id="bar"></div><p id="header-titre-batiment">batiment : <strong>{{ batiment_nom }}</strong></p>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <link rel="stylesheet" href="{{ asset('style/diagnostic.css') }}">
+{% endblock %}
+
+{% block body %}
+
+<div id="page-body">
+
+    <div id="fixed-part">
+        <div id="navigation">
+            <button style = "display : flex; padding-left: 8vw; align-items: center" id="nav-button-sensors" class="nav-button selected" onclick="slideWindow(1)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="3.5vw" height="3.5vh" viewBox="0 0 512 512">
+                    <path fill = "#2BA801" d="M176 24c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 40c-35.3 0-64 28.7-64 64l-40 0c-13.3
+                    0-24 10.7-24 24s10.7 24 24 24l40 0 0 56-40 0c-13.3 0-24 10.7-24 24s10.7 24 24 24l40 0 0
+                    56-40 0c-13.3 0-24 10.7-24 24s10.7 24 24 24l40 0c0 35.3 28.7 64 64 64l0 40c0 13.3 10.7 24
+                    24 24s24-10.7 24-24l0-40 56 0 0 40c0 13.3 10.7 24 24 24s24-10.7 24-24l0-40 56 0 0 40c0 13.3
+                    10.7 24 24 24s24-10.7 24-24l0-40c35.3 0 64-28.7 64-64l40 0c13.3 0 24-10.7
+                    24-24s-10.7-24-24-24l-40 0 0-56 40 0c13.3 0 24-10.7 24-24s-10.7-24-24-24l-40 0 0-56 40
+                    0c13.3 0 24-10.7 24-24s-10.7-24-24-24l-40
+                    0c0-35.3-28.7-64-64-64l0-40c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 40-56 0
+                    0-40c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 40-56 0 0-40zM160 128l192 0c17.7 0 32 14.3 32
+                    32l0 192c0 17.7-14.3 32-32 32l-192 0c-17.7 0-32-14.3-32-32l0-192c0-17.7 14.3-32 32-32zm192
+                    32l-192 0 0 192 192 0 0-192z"/>
+                </svg>
+                Données des capteurs
+            </button>
+            <button style = "display : flex; padding-left: 8vw; align-items: center" id="nav-button-index" class="nav-button" onclick="slideWindow(-1)">
+                <svg width="3.5vw" height="3.5vh" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12Z" stroke="#2BA801" stroke-width="2"></path> <path d="M15 9L9 15" stroke="#2BA801" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M16 14.5C16 15.3284 15.3284 16 14.5 16C13.6716 16 13 15.3284 13 14.5C13 13.6716 13.6716 13 14.5 13C15.3284 13 16 13.6716 16 14.5Z" fill="#2BA801"></path> <path d="M11 9.5C11 10.3284 10.3284 11 9.5 11C8.67157 11 8 10.3284 8 9.5C8 8.67157 8.67157 8 9.5 8C10.3284 8 11 8.67157 11 9.5Z" fill="#2BA801"></path> </g></svg>
+                <p>Score global de confort</p>
+            </button>
+        </div>
+
+        <div id="filter">
+            <select id="select-salle" class="list-options">
+                {% for salle in salles %}
+                <option>{{ salle.nom }}</option>
+                {% endfor %}
+            </select>
+
+            <p style =" font-weight: 600" id="localisation" data-localisation="{{ localisation }}">{% if localisation %}SALLE <a style ="color: #2BA801 ; margin-left: 0.5vw">{{ localisation }} </a>{% endif %}</p>
+        </div>
+    </div>
+
+    <div id="moving-part">
+        <div id="sensors">
+            <div id="sensors-buttons">
+                <button id="sensor-button-temp" type="button" onclick="setGraphiqueCapteur('temp')" class="sensor-button">
+                    <div class="colored">Température</div>
+                    <div class="sensors-buttons-top">
+                        <div class="sensors-buttons-left"></div>
+                        <div class="sensors-buttons-right">
+                            <p>
+                                {% if tempValue %}
+                                    {{ tempValue }}°C
+                                {% else %}
+                                    ?
+                                {% endif %}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="sensors-buttons-bottom">
+                        <p class="moyenne">Moyenne : </p><p id="sensors-buttons-left-avg-temp"></p>°C
+                    </div>
+                </button>
+                <button id="sensor-button-co2" type="button" onclick="setGraphiqueCapteur('co2')" class="sensor-button">
+                    <div class="colored">CO2</div>
+                    <div class="sensors-buttons-top">
+                        <div class="sensors-buttons-left"></div>
+                        <div class="sensors-buttons-right">
+                            <p>
+                                {% if co2Value %}
+                                    {{ co2Value }}
+                                {% else %}
+                                    ?
+                                {% endif %}
+                            </p>
+                            <p>ppm</p>
+                        </div>
+                    </div>
+                    <div class="sensors-buttons-bottom">
+                        <p class="moyenne">Moyenne : </p><p id="sensors-buttons-left-avg-co2">?</p>ppm
+                    </div>
+                </button>
+                <button id="sensor-button-hum" type="button" onclick="setGraphiqueCapteur('hum')" class="sensor-button">
+                    <div class="colored">Humidité</div>
+                    <div class="sensors-buttons-top">
+                        <div class="sensors-buttons-left"></div>
+                        <div class="sensors-buttons-right">
+                            
+                            {% if humValue %}
+                                    {{ humValue }}
+                                {% else %}
+                                    ?
+                                {% endif %}
+                            <p>%</p>
+                        </div>
+                    </div>
+                    <div class="sensors-buttons-bottom">
+                        <p class="moyenne">Moyenne : </p><p id="sensors-buttons-left-avg-hum">?</p>%
+                    </div>
+                </button>
+            </div>
+
+            <div id="chart-container" class="container">
+                <div id="chart-div-reload">
+                    <select id="chart-options" class="chart-options container">
+                        <option id="option-month" value="month">Mois</option>
+                        <option id="option-day" value="day">Jour</option>
+                        <option value="hours&minutes">Heure et minutes</option>
+                    </select>
+                    <div id="chart-input-dates">
+                        <div id="start-date">date début : <input type="date"></input></div>
+                        <div id="end-date">date fin : <input type="date"></input></div>
+                    </div>
+                    <div id="chart-center">
+                        <p>Centrer</p>
+                        <input id="chart-center-checkbox" type="checkbox" value="check">
+                    </div>
+                    <button id="chart-button-reload" onclick="displayChart()">
+                        <svg width="1vw" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M463.5 224l8.5 0c13.3 0 24-10.7 24-24l0-128c0-9.7-5.8-18.5-14.8-22.2s-19.3-1.7-26.2 5.2L413.4 96.6c-87.6-86.5-228.7-86.2-315.8 1c-87.5 87.5-87.5 229.3 0 316.8s229.3 87.5 316.8 0c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0c-62.5 62.5-163.8 62.5-226.3 0s-62.5-163.8 0-226.3c62.2-62.2 162.7-62.5 225.3-1L327 183c-6.9 6.9-8.9 17.2-5.2 26.2s12.5 14.8 22.2 14.8l119.5 0z"/></svg>
+                    </button>
+                </div>
+                <div id="chart-content">
+                    <canvas id="chart"></canvas>
+                    <div id="chart-loading">
+                        <p>Chargement</p>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M304 48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zm0 416a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM48 304a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm464-48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM142.9 437A48 48 0 1 0 75 369.1 48 48 0 1 0 142.9 437zm0-294.2A48 48 0 1 0 75 75a48 48 0 1 0 67.9 67.9zM369.1 437A48 48 0 1 0 437 369.1 48 48 0 1 0 369.1 437z"/></svg>
+                    </div>
+                </div>
+            </div>
+
+            <div id="score">
+                <div id="current-score"></div>
+                <div id="current-score-explication">Score global de confort actuel</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block script %}
+    <script src="{{ asset('js/affichageGraphiques.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+{% endblock %}

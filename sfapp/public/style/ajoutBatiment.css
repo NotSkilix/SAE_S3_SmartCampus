@@ -1,0 +1,270 @@
+#nav-lien-accueil{
+    opacity: 100%;
+}
+
+#nav-lien-accueil .nav-lien-selection{
+    border-left: 5px solid var(--blanc);
+    height: 100%;
+}
+
+#page-body
+{
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* --- FORMULAIRE ---*/
+#form-content {
+    display: flex;
+    flex-direction: column;
+    padding: 2vw 4vw;
+    width: 60vw;
+    max-height: 65vh;
+}
+
+/* partie batiment du formulaire */
+#ajoutBatimentForm{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size: calc(0.8vw + 0.8vh);
+    gap: 2vw;
+}
+
+/* input pour changer le nom du batiment */
+.form-part p{
+    font-size: 1.8vw;
+    padding-bottom: 0.5vw;
+}
+
+#edit_batiment_nom_nom{
+    border: none;
+    background-color: var(--input);
+    border-radius: 10px;
+    padding: calc(0.2vh + 0.2vw);
+    font-size: calc(1vw + 1vh);
+    width: 30vw;
+}
+
+/* pour chacher des éléments du formulaire par défaut */
+.required{
+    display: none;
+}
+
+.hidden {
+    display: none;
+}
+
+/* --- FENÊTRE AJOUT ETAGE --- */
+.custom-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--blanc);
+    width: 90%;
+    max-width: 30vw;
+    padding: calc(1vw + 1vh);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 11000;
+}
+
+/* contenu de la fenêtre */
+.custom-modal-content {
+    position: relative;
+}
+
+/* arrière-plan grisé */
+#modalBackdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 10000;
+}
+
+/* input pour l'ajout d'un etage */
+.form-control{
+    border: none;
+    border-radius: 5px;
+    padding: 0.6vh 0.5vw;
+    margin: 0.3vw;
+    font-family: Poppins, serif;
+    background-color: var(--input);
+    font-style: italic;
+    font-size: 0.9vw;
+    color: var(--gris);
+    min-width: 3.5vw;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+/* boutons de la fenêtre d'ajout d'un étage */
+.btn_form{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-top: 2vh;
+}
+
+/* séparations des formulaires */
+.separation_form{
+    width: 100%;
+    border: 2px solid var(--input);
+    margin-top: 3vh;
+    margin-bottom: 3vh;
+    border-radius: 100px;
+}
+
+/* --- FORMULAIRE AJOUT ETAGE (partie centrale) --- */
+.title_etage{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.title{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 1vw;
+    font-size: calc(0.8vw + 0.8vh);
+}
+
+.title svg{
+    margin-right: 1vw;
+}
+
+/* --- LISTE DES ETAGES (partir inférieure) --- */
+.list_batiment{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: 2vw;
+    padding-left: 1vw;
+    overflow: scroll;
+}
+
+/* - chaque étage - */
+.etage_batiment{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--input);
+    border-radius: calc(0.2vw + 0.2vw);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    width: 13vw;
+    height: 13vh;
+    margin-bottom: 1vh;
+}
+
+/* séparation dans le contenu des étages */
+.separation_etage{
+    width: 10vw;
+    border: 1px solid var(--noir);
+    margin: 1vh 1vw;
+    border-radius: 100px;
+    opacity: 25%;
+}
+
+.nom_etage{
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    font-size: calc(0.8vw + 0.8vh);
+    padding-top: 0.5vh;
+    padding-left: 1vw;
+}
+
+.etage_bottom{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 12vw;
+}
+
+.salle_etage{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.salle_etage svg{
+    height: 2vh;
+    width: 1vw;
+    margin-right: 0.5vw;
+}
+
+/* boutons de suppression et modif des étages */
+.buttons-display {
+    display : flex;
+    justify-content: flex-end;
+    position: relative;
+    gap : 0.5vw;
+    margin-right: 1vw;
+}
+
+.buttons-display svg{
+    margin-right: -0.4vw;
+}
+
+.edit-btn-etage{
+    display: flex;
+    border-style: none;
+    border-radius: 0.7vw;
+    height: 2.3vw;
+    padding: 0.8vh 0.5vw;
+    justify-content: center;
+    align-items: center;
+    width: 2.3vw;
+    overflow: hidden;
+    box-shadow: 0 0 0.5em var(--vert);
+}
+
+.edit-btn-etage svg{
+    width: 100%;
+}
+
+.delete-btn-etage{
+    display: flex;
+    border-style: none;
+    border-radius: 0.7vw;
+    height: 2.3vw;
+    padding: 0.8vh 0.5vw;
+    align-items: center;
+    width: 2.3vw;
+    overflow: hidden;
+    box-shadow: 0 0 0.5em var(--rouge);
+}
+
+.delete-btn-etage svg{
+    width: 100%;
+}
+
+/* input pour la modification du nom de l'étage */
+#edit_etage_nomComplet{
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    width: 25vw;
+}
+
+#edit_etage_nomComplet_nomComplet{
+    width: 25vw;
+    background-color: var(--input);
+    color: var(--gris);
+    border:none;
+    font-size: calc(0.8vw + 0.8vh);
+}
+
+svg{
+    width: 1.8vw;
+}

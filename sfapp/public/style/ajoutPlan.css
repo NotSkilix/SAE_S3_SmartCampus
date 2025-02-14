@@ -1,0 +1,546 @@
+/* --- NAV GAUCHE --- */
+#nav-lien-plan .nav-lien-selection{
+    border-left: 5px solid white;
+    height: 100%;
+}
+
+#nav-lien-plan{
+    opacity: 100%;
+}
+
+#page-body{
+    justify-content: center;
+    align-items: center;
+}
+
+/* --- PARTIE GAUCHE --- */
+#body-left{
+    width: 55%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+/* --- FORMULAIRE D'AJOUT --- */
+#form{
+    width: 85%;
+    height: 20%;
+    padding: 1vw 0;
+}
+
+#ajoutPlanForm{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+/* partie droite du formulaire */
+#form-right{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 50%;
+}
+
+#form-right-sa{
+    width: 15vw;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+/* bouton ajout d'un sa */
+#form-right-sa-button{
+    padding: 0 1.2vw;
+    border: 0;
+    border-radius: 0.2vw;
+    background-color: var(--input);
+    color: var(--gris);
+}
+
+#form-right-sa-button:hover{
+    background-color: var(--gris);
+    color: var(--input);
+}
+
+/* liste des sa */
+#form-right-sa-list{
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    height: 80%;
+}
+
+/* chaque sa */
+.form-right-sa-list-item{
+    display: flex;
+    justify-content: space-between;
+    padding: 0.4vw;
+    border-radius: 0.3vw;
+}
+
+.form-right-sa-list-item:hover{
+    background-color: rgba(202, 202, 202, 0.4);
+}
+
+.form-right-sa-list-item:hover .form-right-sa-list-item-btn{
+    transition: 0.2s;
+    opacity: 1;
+}
+
+/* liste déroulante des états */
+.form-right-sa-list-item #change_etat_Etat{
+    color: var(--blanc);
+    border-radius: 0;
+    border-top-left-radius: 0.3vw;
+    width: 10vw;
+}
+
+.form-right-sa-list-item-select{
+    width: 10vw;
+}
+
+/* bouton de suppression de chaque sa */
+.form-right-sa-list-item-btn{
+    opacity: 0;
+    border: 0;
+    background-color: var(--rouge);
+    border-radius: 0.2vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5vh 0.2vw;
+}
+
+/* nom de chaque sa */
+.form-right-sa-list-item-sa{
+    width: 6vw;
+    display: flex;
+    align-items: center;
+}
+
+.form-right-sa-list-item-sa svg{
+    margin-right: 0.3vw;
+}
+
+/* partie gauche du formulaire */
+#form-left{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 14vw;
+}
+
+#form-left p{
+    font-size: 1.3vw;
+}
+
+/* bouton d'accès à l'historique */
+#form-left-historique{
+    width: 50%;
+    padding: 0.8vw;
+    font-size: 0.85vw;
+    background-color: var(--blanc);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    border-radius: 0.5vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#form-left-historique a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#form-left-historique a{
+    color: var(--gris);
+}
+
+/* separation du formulaire */
+#form-separator{
+    width: 0.15vw;
+    height: 90%;
+    border-radius: 1vw;
+    background-color: rgba(0,0,0,0.25);
+}
+
+/* --- NOTES --- */
+#notes{
+    width: 85%;
+    height: 60%;
+    background-color: var(--container);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    border-radius: 1vw;
+}
+
+/* --- PARTIE DROITE --- */
+#body-right{
+    width: 45%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+/* --- INFORMATIONS --- */
+#infos{
+    width: 90%;
+    height: 80%;
+    background-color: var(--container);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+/* historique des notes */
+#infos-historique-notes{
+    height: 60%;
+    width: 85%;
+}
+
+#infos-separator{
+    width: 80%;
+    height: 0.3vh;
+    border-radius: 1vw;
+    background-color: rgba(0,0,0,0.25);
+}
+
+/* guideline */
+#infos-guideline{
+    padding: 2vh 2vw;
+    border-radius: 0.5vw;
+    height: 20%;
+    width: 75%;
+    background-color: var(--blanc);
+}
+
+#infos-guideline-top{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#infos-guideline-top p{
+    font-size: calc(1.5vh + 1.5vw);
+}
+
+#infos-guideline-top svg{
+    width: 2.5vw;
+}
+
+#infos-guideline-separator{
+    width: 100%;
+    height: 0.2vh;
+    background-color: rgba(0,0,0,0.25);
+    margin: 1vh 0;
+}
+
+#infos-guideline-texte {
+    color: var(--gris);
+}
+
+/* --- FICHIER DE LA GUIDELINE --- */
+#guideline-file{
+    position: fixed;
+    top: 10vh;
+    left: 10vw;
+    width: 50vw;
+    height: 60vh;
+}
+
+/* --- COULEURS DES ETATS --- */
+.Intervention{ /* état 'Intervention nécessaire' */
+    background-color: var(--intervention_necessaire);
+    color: var(--intervention_necessaire);
+}
+
+.À{ /* état 'À installer' */
+    background-color: var(--a_installer);
+    color: var(--a_installer);
+}
+
+.En{ /* état 'En stock' */
+    background-color: var(--en_stock);
+    color: var(--en_stock);
+}
+
+.Fonctionnel{ /* état 'Fonctionnel' */
+    background-color: var(--fonctionnel);
+    color: var(--fonctionnel);
+}
+
+svg{
+    width: 1.2vw;
+}
+
+select{
+    border: none;
+    border-radius: 0.2vw;
+    padding: 0.8vh 0.6vw;
+    font-family: Poppins, serif;
+    background-color: var(--input);
+    font-style: italic;
+    color: var(--gris);
+    width: 8vw;
+}
+
+
+/* -------------------------------------------------- affichage du form pour l'ajout d'une note ----------------------------------------------------------*/
+#add_note{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#add_note_titre{
+    flex: 1;
+    border: none;
+    border-radius: 7px;
+    width: 34.5vw;
+    font-family: Poppins, serif;
+    background-color: white;
+    margin-bottom: 1vh;
+    height: 3vh;
+    font-size: calc(0.6vh + 0.6vw);
+    padding-left: 1vw;
+}
+
+#add_note_titre::placeholder{
+    font-weight: bold;
+    padding: calc(1vh + 1vw);
+}
+
+#add_note_texte{
+    flex: 1;
+    border: none;
+    border-radius: 7px;
+    width: 34.5vw;
+    font-family: Poppins, serif;
+    background-color: white;
+    margin-bottom: 1vh;
+    height: 30vh;
+    font-size: calc(0.6vh + 0.6vw);
+    padding-left: 1vw;
+    resize: none;
+}
+
+#add_note_texte::placeholder{
+    font-weight: bold;
+    padding: calc(1vh + 1vw);
+}
+
+.form-content{
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100%;
+}
+
+.form-part-title{
+    display: flex;
+    justify-content: start;
+    width: 100%;
+    font-size: calc(1.5vh + 1.5vw);
+}
+
+.form-part-title svg{
+    height: 5vh;
+    width: 5vw;
+    stroke: #2BA801;
+    stroke-width: 2;
+    margin-bottom: -1vh;
+}
+
+.bar-titreform-titrenote{
+    width: 90%;
+    background-color: rgba(0,0,0,0.25);
+    border-radius: 1vw;
+    height: 0.2vh;
+    margin-bottom: 1vh;
+}
+
+.form-part{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+.clear_note{
+    background-color: white;
+    color: var(--vert);
+    padding: 1vh 4vw;
+    font-size: calc(0.6vh + 0.6vw);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+}
+
+.new_note{
+    background-color: white;
+    color: var(--vert);
+    border: none;
+    padding: 1vh 4vw;
+    font-size: calc(0.6vh + 0.6vw);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+}
+
+/* ------------------------------------------------------**-- affichage des notes ------------------------------------------------------------------ */
+
+/* note probleme */
+#liste-notes{
+    display : flex;
+    flex-wrap: wrap;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 80%;
+    padding-right: 1vw;
+    gap: 2vh;
+}
+
+.note_probleme {
+    transition: box-shadow 0.3s ease; /* Transition fluide */
+    background-color: var(--blanc);
+    border-radius: 10px;
+    border: 1px solid var(--probleme);
+    display: flex;
+    flex-direction: column;
+    width: 28vw;
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0); /* Aucun effet initial */
+}
+
+.note_probleme:hover {
+    box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.4); /* Effet plus discret */
+}
+
+
+.header_note_probleme{
+    display: flex;
+    align-items: center;
+    background-color: var(--probleme);
+    color: var(--blanc);
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    font-size: calc(0.7vh + 0.7vw);
+}
+
+.header_note_probleme svg{
+    stroke: var(--blanc);
+    height: 3vh;
+    width: 3vw;
+    fill:none;
+    stroke-width: calc(0.05vw + 0.05vh);
+}
+
+.text_note_probleme{
+    color: #717171;
+    display: flex;
+    padding-left: 0.5vw;
+    padding-top: 0.8vh;
+}
+
+.marquelu_note{
+    background-color: white;
+    color: var(--noir);
+    padding: 0.1vh 0.5vw;
+    font-size: calc(0.5vh + 0.5vw);
+    border-radius: 5px;
+    text-decoration: none;
+    margin-left: 35%;
+    margin-top: 0.3vh;
+    transition: 0.2s;
+}
+
+.marquelu_note:hover{
+    background-color: var(--container);
+    transition: 0.2s;
+
+}
+
+/* note sans probleme */
+.note{
+    background-color: var(--blanc);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+}
+
+.note svg{
+    stroke: var(--vert);
+    padding-left: 0.5vw;
+}
+
+.svg_Information{
+    stroke-width: 0.15vw;
+}
+
+.svg_ProblemeLu{
+    fill: var(--vert);
+    stroke-width: 0;
+}
+
+.info_note{
+    width: 80%;
+    padding: 1vh 1vw;
+    position: relative;
+}
+
+.info_note::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 5%;
+    height: 90%;
+    width: 0.1vw;
+    background-color: var(--noir);
+    opacity: 25%;
+    margin-right: 0.5vw;
+}
+
+.header_note{
+    color: var(--vert);
+    font-size: calc(0.6vh + 0.6vw);
+}
+
+.date_note{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #717171;
+}
+
+.text_note{
+    width: 18.5vw;
+    word-wrap: break-word;
+    color: #717171;
+}
+
+.titre_info{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: var(--noir);
+    font-size: calc(1vh + 1vw);
+    margin-bottom: 2vh;
+}
+
+.titre_info svg{
+    height: 5vh;
+    width: 5vw;
+}
+
+#list-type{
+    background-color: white;
+    height: 5vh;
+}

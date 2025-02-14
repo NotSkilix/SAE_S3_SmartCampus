@@ -1,0 +1,137 @@
+{% set batiment_nom = app.session.get('batiment_selectioné_nom') %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        {% block content %}
+        {% endblock %}
+        <link rel="stylesheet" href="{{ asset("style/style_base.css") }}">
+        <link rel="icon" type="image/x-icon" href="{{ asset('img/favicon.ico') }}">
+        <title>{% block title %}{% endblock %}</title>
+        <!-- FONT -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <nav>
+            <div id="espace-logo">
+                <img src="{{ asset("img/Logo.png") }}" id="espace-logo-img" alt="logo">
+                <p>Smart <br> Campus</p>
+            </div>
+            <ul>
+                <li>
+                    <a href="{{ path("app_accueil") }}" id="nav-lien-accueil" class="nav-lien">
+                        <div class="nav-lien-selection"></div>
+                        <svg style="margin-left: 1vw; margin-right: 1vw; width: 2vw;" viewBox="0 0 45 41" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M14.1667 37.5732H8.58333C5.49974 37.5732 3 35.5585 3 33.0732V17.1429C3 15.8292 3.71224 14.5811 4.94976 13.7262L18.908 4.08334C20.999 2.63889 24.0843 2.63889 26.1753 4.08334L40.1336 13.7262C41.3712 14.5811 42.0833 15.8292 42.0833 17.1429V33.0732C42.0833 35.5585 39.5837 37.5732 36.5 37.5732H30.9167M14.1667 37.5732V24.0732C14.1667 22.8305 15.4166 21.8232 16.9583 21.8232H28.125C29.6668 21.8232 30.9167 22.8305 30.9167 24.0732V37.5732M14.1667 37.5732H30.9167" stroke="white" stroke-width="5.20833" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <p class="nav-lien-txt">BATIMENT</p>
+                    </a>
+                </li>
+                {% if batiment_nom != null %}
+                    <li>
+                        <a href="{{ path("app_dashboard") }}" id="nav-lien-dashboard" class="nav-lien">
+                            <div class="nav-lien-selection"></div>
+                            <!-- image plan -->
+                            <svg class="nav-lien-img"  viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M13 12C13 11.4477 13.4477 11 14 11H19C19.5523 11 20 11.4477 20 12V19C20 19.5523 19.5523 20 19 20H14C13.4477 20 13 19.5523 13 19V12Z" stroke="#ffffff" stroke-width="1" stroke-linecap="round"></path> <path d="M4 5C4 4.44772 4.44772 4 5 4H9C9.55228 4 10 4.44772 10 5V12C10 12.5523 9.55228 13 9 13H5C4.44772 13 4 12.5523 4 12V5Z" stroke="#ffffff" stroke-width="1" stroke-linecap="round"></path> <path d="M4 17C4 16.4477 4.44772 16 5 16H9C9.55228 16 10 16.4477 10 17V19C10 19.5523 9.55228 20 9 20H5C4.44772 20 4 19.5523 4 19V17Z" stroke="#ffffff" stroke-width="1" stroke-linecap="round"></path> <path d="M13 5C13 4.44772 13.4477 4 14 4H19C19.5523 4 20 4.44772 20 5V7C20 7.55228 19.5523 8 19 8H14C13.4477 8 13 7.55228 13 7V5Z" stroke="#ffffff" stroke-width="1" stroke-linecap="round"></path> </g></svg>
+                            <p class="nav-lien-txt">DASHBOARD</p>
+                        </a>
+                    </li>
+                    {% if is_granted('ROLE_TECHNICIEN') %}
+                        <li>
+                            <a href="{{ path("app_plan") }}" id="nav-lien-plan" class="nav-lien">
+                                <div class="nav-lien-selection"></div>
+                                <!-- image plan -->
+                                <svg class="nav-lien-img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M438.6 150.6c12.5-12.5 12.5-32.8 0-45.3l-96-96c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.7 96 32 96C14.3 96 0 110.3 0 128s14.3 32 32 32l306.7 0-41.4 41.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l96-96zm-333.3 352c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 416 416 416c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0 41.4-41.4c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-96 96c-12.5 12.5-12.5 32.8 0 45.3l96 96z"/></svg>
+                                <p class="nav-lien-txt">PLAN</p>
+                            </a>
+                        </li>
+                    {% endif %}
+                    <li>
+                        <a href="{{ path("app_salle") }}" id="nav-lien-salles" class="nav-lien">
+                            <div class="nav-lien-selection"></div>
+                            <svg class ="nav-lien-img" viewBox="0 0 50 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M0 3.28571C0 1.47108 1.1193 0 2.5 0H47.5C48.8807 0 50 1.47108 50 3.28571C50 5.10035 48.8807 6.57143 47.5 6.57143H2.5C1.1193 6.57143 0 5.10035 0 3.28571Z" fill="white"/>
+                                <path d="M0 22.9998C0 21.1851 1.1193 19.7141 2.5 19.7141H47.5C48.8807 19.7141 50 21.1851 50 22.9998C50 24.8145 48.8807 26.2855 47.5 26.2855H2.5C1.1193 26.2855 0 24.8145 0 22.9998Z" fill="white"/>
+                                <path d="M2.5 39.4287C1.1193 39.4287 0 40.8997 0 42.7144C0 44.5291 1.1193 46.0001 2.5 46.0001H47.5C48.8807 46.0001 50 44.5291 50 42.7144C50 40.8997 48.8807 39.4287 47.5 39.4287H2.5Z" fill="white"/>
+                            </svg>
+                            <p class="nav-lien-txt">SALLES</p>
+                        </a>
+                    </li>
+                    {% if is_granted('ROLE_TECHNICIEN') %}
+                        <li>
+                            <a href="{{ path("app_systeme_acquisition") }}" id="nav-lien-capteurs" class="nav-lien">
+                                <div class="nav-lien-selection"></div>
+                                <!-- Icône microchip (FontAwesome) -->
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="nav-lien-img">
+                                    <path d="M176 24c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 40c-35.3 0-64 28.7-64 64l-40 0c-13.3
+                                    0-24 10.7-24 24s10.7 24 24 24l40 0 0 56-40 0c-13.3 0-24 10.7-24 24s10.7 24 24 24l40 0 0
+                                    56-40 0c-13.3 0-24 10.7-24 24s10.7 24 24 24l40 0c0 35.3 28.7 64 64 64l0 40c0 13.3 10.7 24
+                                    24 24s24-10.7 24-24l0-40 56 0 0 40c0 13.3 10.7 24 24 24s24-10.7 24-24l0-40 56 0 0 40c0 13.3
+                                    10.7 24 24 24s24-10.7 24-24l0-40c35.3 0 64-28.7 64-64l40 0c13.3 0 24-10.7
+                                    24-24s-10.7-24-24-24l-40 0 0-56 40 0c13.3 0 24-10.7 24-24s-10.7-24-24-24l-40 0 0-56 40
+                                    0c13.3 0 24-10.7 24-24s-10.7-24-24-24l-40
+                                    0c0-35.3-28.7-64-64-64l0-40c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 40-56 0
+                                    0-40c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 40-56 0 0-40zM160 128l192 0c17.7 0 32 14.3 32
+                                    32l0 192c0 17.7-14.3 32-32 32l-192 0c-17.7 0-32-14.3-32-32l0-192c0-17.7 14.3-32 32-32zm192
+                                    32l-192 0 0 192 192 0 0-192z"/>
+                                </svg>
+                                <p class="nav-lien-txt">SA</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ path("app_diagnostic", {'localisation':'first'}) }}" id="nav-lien-diagnostic" class="nav-lien">
+                                <div class="nav-lien-selection"></div>
+                                <!-- image diagnostic -->
+                                <svg xmlns="http://www.w3.org/2000/svg" class ="nav-lien-img" viewBox="0 0 448 512"><path fill="#ffffff" d="M160 80c0-26.5 21.5-48 48-48l32 0c26.5 0 48 21.5 48 48l0 352c0 26.5-21.5 48-48 48l-32 0c-26.5 0-48-21.5-48-48l0-352zM0 272c0-26.5 21.5-48 48-48l32 0c26.5 0 48 21.5 48 48l0 160c0 26.5-21.5 48-48 48l-32 0c-26.5 0-48-21.5-48-48L0 272zM368 96l32 0c26.5 0 48 21.5 48 48l0 288c0 26.5-21.5 48-48 48l-32 0c-26.5 0-48-21.5-48-48l0-288c0-26.5 21.5-48 48-48z"/></svg>
+                                <p class="nav-lien-txt">DIAGNOSTIC</p>
+                            </a>
+                        </li>
+                    {% endif %}
+                {% endif %}
+            </ul>
+            <div id="espace-connexion">
+                {# Ancienne version : <svg id="espace-connexion-img" alt="profil" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M80 40C80 17.96 62.04 0 40 0C17.96 0 0 17.96 0 40C0 51.6 5 62.04 12.92 69.36C12.92 69.4 12.92 69.4 12.88 69.44C13.28 69.84 13.76 70.16 14.16 70.52C14.4 70.72 14.6 70.92 14.84 71.08C15.56 71.68 16.36 72.24 17.12 72.8C17.4 73 17.64 73.16 17.92 73.36C18.68 73.88 19.48 74.36 20.32 74.8C20.6 74.96 20.92 75.16 21.2 75.32C22 75.76 22.84 76.16 23.72 76.52C24.04 76.68 24.36 76.84 24.68 76.96C25.56 77.32 26.44 77.64 27.32 77.92C27.64 78.04 27.96 78.16 28.28 78.24C29.24 78.52 30.2 78.76 31.16 79C31.44 79.08 31.72 79.16 32.04 79.2C33.16 79.44 34.28 79.6 35.44 79.72C35.6 79.72 35.76 79.76 35.92 79.8C37.28 79.92 38.64 80 40 80C41.36 80 42.72 79.92 44.04 79.8C44.2 79.8 44.36 79.76 44.52 79.72C45.68 79.6 46.8 79.44 47.92 79.2C48.2 79.16 48.48 79.04 48.8 79C49.76 78.76 50.76 78.56 51.68 78.24C52 78.12 52.32 78 52.64 77.92C53.52 77.6 54.44 77.32 55.28 76.96C55.6 76.84 55.92 76.68 56.24 76.52C57.08 76.16 57.92 75.76 58.76 75.32C59.08 75.16 59.36 74.96 59.64 74.8C60.44 74.32 61.24 73.88 62.04 73.36C62.32 73.2 62.56 73 62.84 72.8C63.64 72.24 64.4 71.68 65.12 71.08C65.36 70.88 65.56 70.68 65.8 70.52C66.24 70.16 66.68 69.8 67.08 69.44C67.08 69.4 67.08 69.4 67.04 69.36C75 62.04 80 51.6 80 40ZM59.76 59.88C48.92 52.6 31.16 52.6 20.24 59.88C18.48 61.04 17.04 62.4 15.84 63.88C9.76 57.72 6 49.28 6 40C6 21.24 21.24 6 40 6C58.76 6 74 21.24 74 40C74 49.28 70.24 57.72 64.16 63.88C63 62.4 61.52 61.04 59.76 59.88Z" fill="white"/>
+                    <path d="M40 19.7188C31.72 19.7188 25 26.4388 25 34.7188C25 42.8388 31.36 49.4388 39.8 49.6788C39.92 49.6788 40.08 49.6788 40.16 49.6788C40.24 49.6788 40.36 49.6788 40.44 49.6788C40.48 49.6788 40.52 49.6788 40.52 49.6788C48.6 49.3988 54.96 42.8388 55 34.7188C55 26.4388 48.28 19.7188 40 19.7188Z" fill="white"/>
+                </svg>
+
+                <p id="espace-connexion-texte">Se connecter</p> #}
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    {# Cas où l'utilisateur est connecté, affiche un bouton de déconnexion #}
+                    <a href="{{ path("app_logout") }}">
+                        <svg id="espace-connexion-img" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M80 40C80 17.96 62.04 0 40 0C17.96 0 0 17.96 0 40C0 51.6 5 62.04 12.92 69.36C12.92 69.4 12.92 69.4 12.88 69.44C13.28 69.84 13.76 70.16 14.16 70.52C14.4 70.72 14.6 70.92 14.84 71.08C15.56 71.68 16.36 72.24 17.12 72.8C17.4 73 17.64 73.16 17.92 73.36C18.68 73.88 19.48 74.36 20.32 74.8C20.6 74.96 20.92 75.16 21.2 75.32C22 75.76 22.84 76.16 23.72 76.52C24.04 76.68 24.36 76.84 24.68 76.96C25.56 77.32 26.44 77.64 27.32 77.92C27.64 78.04 27.96 78.16 28.28 78.24C29.24 78.52 30.2 78.76 31.16 79C31.44 79.08 31.72 79.16 32.04 79.2C33.16 79.44 34.28 79.6 35.44 79.72C35.6 79.72 35.76 79.76 35.92 79.8C37.28 79.92 38.64 80 40 80C41.36 80 42.72 79.92 44.04 79.8C44.2 79.8 44.36 79.76 44.52 79.72C45.68 79.6 46.8 79.44 47.92 79.2C48.2 79.16 48.48 79.04 48.8 79C49.76 78.76 50.76 78.56 51.68 78.24C52 78.12 52.32 78 52.64 77.92C53.52 77.6 54.44 77.32 55.28 76.96C55.6 76.84 55.92 76.68 56.24 76.52C57.08 76.16 57.92 75.76 58.76 75.32C59.08 75.16 59.36 74.96 59.64 74.8C60.44 74.32 61.24 73.88 62.04 73.36C62.32 73.2 62.56 73 62.84 72.8C63.64 72.24 64.4 71.68 65.12 71.08C65.36 70.88 65.56 70.68 65.8 70.52C66.24 70.16 66.68 69.8 67.08 69.44C67.08 69.4 67.08 69.4 67.04 69.36C75 62.04 80 51.6 80 40ZM59.76 59.88C48.92 52.6 31.16 52.6 20.24 59.88C18.48 61.04 17.04 62.4 15.84 63.88C9.76 57.72 6 49.28 6 40C6 21.24 21.24 6 40 6C58.76 6 74 21.24 74 40C74 49.28 70.24 57.72 64.16 63.88C63 62.4 61.52 61.04 59.76 59.88Z"/>
+                            <path d="M40 19.7188C31.72 19.7188 25 26.4388 25 34.7188C25 42.8388 31.36 49.4388 39.8 49.6788C39.92 49.6788 40.08 49.6788 40.16 49.6788C40.24 49.6788 40.36 49.6788 40.44 49.6788C40.48 49.6788 40.52 49.6788 40.52 49.6788C48.6 49.3988 54.96 42.8388 55 34.7188C55 26.4388 48.28 19.7188 40 19.7188Z"/>
+                        </svg>
+                        {{ app.user.nom }}
+                    </a>
+                {% else %}
+                    {# Cas où l'utilisateur est déconnecté, affiche un bouton de connexion #}
+                    <a href="{{ path("app_login") }}">
+                        Se connecter
+                    </a>
+                {% endif %}
+            </div>
+        </nav>
+        <header>
+            {% block header %}
+            {% endblock %}
+        </header>
+        <div id="body">
+            <div id="popup">
+                {% for message in app.flashes('message') %}
+                    <div id="popup-img">
+                        <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path d='M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z'/></svg></div>
+                    <strong>{{ message }}</strong>
+                {% endfor %}
+            </div>
+            {% block body %}{% endblock %}
+        </div>
+        <script src="{{ asset("js/popup.js") }}"></script>
+        {# Ancien script de connexion : <script src="{{ asset("js/modeAdmin.js") }}"></script> #}
+        {% block script %}
+        {% endblock %}
+    </body>
+</html>

@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <link rel="stylesheet" href="{{ asset('style/connexion.css') }}">
+{% endblock %}
+
+{% block title %}Connexion{% endblock %}
+
+{% block header %}
+    <div class="header-titre">
+        <p id="header-titre"><strong>CONNEXION</strong></p>
+    </div>
+{% endblock %}
+
+{% block body %}
+    <div id="page-body">
+        <form id="login-form" method="post">
+            {% if app.user %}
+                <div class="mb-3">
+                    You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+                </div>
+            {% endif %}
+
+            <h1>Connexion à Smart Campus</h1>
+
+            {# Affichage du message d'erreur (identifiants incorrects par exemple)
+            {# {% if error %}
+                <div class="alert alert-danger">
+                    <!-- Par défaut de Symfony : {{ error.messageKey|trans(error.messageData, 'security') }} -->
+                    Les identifiants sont incorrects.
+                </div>
+            {% endif %} #}
+
+            <div class="input username-input">
+                <label for="username">Nom d'utilisateur :</label>
+                <input type="text" value="{{ last_username }}" name="_username" id="username" class="form-control" autocomplete="username" required autofocus>
+            </div>
+            <div class="input password-input">
+                <label for="password">Mot de passe :</label>
+                <input type="password" name="_password" id="password" class="form-control" autocomplete="current-password" required>
+            </div>
+
+            {# Input caché pour la protection contre les attaques CSRF #}
+            <input type="hidden" name="_csrf_token"
+                   value="{{ csrf_token('authenticate') }}"
+            >
+
+            <div class="form-options">
+                {# Option pour rester connecté #}
+                <div class="checkbox mb-3">
+                    <input type="checkbox" name="_remember_me" id="_remember_me">
+                    <label for="_remember_me">Rester connecté</label>
+                </div>
+                {# Bouton de validation #}
+                <button class="connect-btn" type="submit">
+                    Se connecter
+                </button>
+            </div>
+        </form>
+    </div>
+{% endblock %}

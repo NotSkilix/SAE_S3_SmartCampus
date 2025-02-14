@@ -1,0 +1,143 @@
+    {% extends 'base.html.twig' %}
+
+{% block title %}Salle {{ salle.nom }}{% endblock %}
+
+{% block content %}
+    <link rel="stylesheet" href="{{ asset('style/ajoutPlan.css') }}">
+{% endblock %}
+
+{% block header %}
+    <div class="header-titre">
+        <p id="header-titre"><strong>SALLE {{ salle.nom }}</strong></p><div id="bar"></div><p id="header-titre-batiment">batiment : <strong>{{ batiment_nom }}</strong></p>
+    </div>
+{% endblock %}
+
+{% block body %}
+    <!-- popup de confirmation -->
+    <div id="message-confirmation">
+        <p>Etes-vous sur de vouloir désassocier ce SA ?</p>
+        <button id="confirm-cancel-button" class="button-type2 button-cancel"> ANNULER</button>
+        <button id="confirm-delete-button" class="button-type2 button-confirm" data-delete-salle="true"> SUPPRIMER</button>
+    </div>
+
+    <div id="page-body">
+        <div id="body-left">
+            <div id="form" class="container">
+                <div id="ajoutPlanForm">
+                    <div id="form-left">
+                        <p>SALLE <strong>{{ salle.nom }}</strong></p>
+                        <div id="form-left-historique">
+                            <!-- svg -->
+                            <a href="{{ path('app_plan_historique', {'nom':salle.nom}) }}">HISTORIQUE DES ATTRIBUTIONS</a>
+                        </div>
+                    </div>
+
+                    <div id="form-separator"></div>
+
+                    <div id="form-right">
+                        <div id="form-right-sa">
+                            <p><strong>SA</strong> associés : </p>
+                            {% if is_granted('ROLE_CHARGEMISSION') %}
+                                <a href="{{ path('app_plan_nouveau', {'idSalle': salle.id}) }}" id="form-right-sa-button">+</a>
+                            {% endif %}
+                        </div>
+                        <div id="form-right-sa-list">
+
+                        {% for plan in plans %}
+                            <div class="form-right-sa-list-item">
+
+                                {{ form(forms[plan.nom], {'attr': {'class': 'form-right-sa-list-item-select etatForm', 'data':plan.nom}}) }}
+
+                                <div class="form-right-sa-list-item-sa">
+                                    <!-- image capteur -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                    <path d="M176 24c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 40c-35.3 0-64 28.7-64 64l-40 0c-13.3 0-24 10.7-24 24s10.7 24 24 24l40 0 0 56-40 0c-13.3 0-24 10.7-24 24s10.7 24 24 24l40 0 0 56-40 0c-13.3 0-24 10.7-24 24s10.7 24 24 24l40 0c0 35.3 28.7 64 64 64l0 40c0 13.3 10.7 24 24 24s24-10.7 24-24l0-40 56 0 0 40c0 13.3 10.7 24 24 24s24-10.7 24-24l0-40 56 0 0 40c0 13.3 10.7 24 24 24s24-10.7 24-24l0-40c35.3 0 64-28.7 64-64l40 0c13.3 0 24-10.7 24-24s-10.7-24-24-24l-40 0 0-56 40 0c13.3 0 24-10.7 24-24s-10.7-24-24-24l-40 0 0-56 40 0c13.3 0 24-10.7 24-24s-10.7-24-24-24l-40 0c0-35.3-28.7-64-64-64l0-40c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 40-56 0 0-40c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 40-56 0 0-40zM160 128l192 0c17.7 0 32 14.3 32 32l0 192c0 17.7-14.3 32-32 32l-192 0c-17.7 0-32-14.3-32-32l0-192c0-17.7 14.3-32 32-32zm192 32l-192 0 0 192 192 0 0-192z"/>
+                                    </svg>
+                                    <p>{{ plan.nom }}</p>
+                                </div>
+                                <button type="button" class="form-right-sa-list-item-btn button-cancel" data-sa="{{ plan.nom }}">
+                                    <svg fill ="white" height="1.15vw"  http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M135.2 17.7C140.6 6.8 151.7 0 163.8 0L284.2 0c12.1 0 23.2 6.8 28.6 17.7L320 32l96 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 96C14.3 96 0 81.7 0 64S14.3 32 32 32l96 0 7.2-14.3zM32 128l384 0 0 320c0 35.3-28.7 64-64 64L96 512c-35.3 0-64-28.7-64-64l0-320zm96 64c-8.8 0-16 7.2-16 16l0 224c0 8.8 7.2 16 16 16s16-7.2 16-16l0-224c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16l0 224c0 8.8 7.2 16 16 16s16-7.2 16-16l0-224c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16l0 224c0 8.8 7.2 16 16 16s16-7.2 16-16l0-224c0-8.8-7.2-16-16-16z"/></svg>
+                                </button>
+                            </div>
+                        {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="notes">
+                {{ form_start(form, {'attr': {'id': 'ajoutNoteForm'}}) }}
+                <div class="form-part">
+                    <div class="form-part-title">
+                        <p class="titre" style="padding-bottom: 1vh; display : flex; align-items: center; font-size: calc(1.3vh + 1.3vw)">
+                        <svg class="titreSVG" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M13 19.9991C12.9051 20 12.7986 20 12.677 20H7.19691C6.07899 20 5.5192 20 5.0918 19.7822C4.71547 19.5905 4.40973 19.2842 4.21799 18.9079C4 18.4801 4 17.9203 4 16.8002V7.2002C4 6.08009 4 5.51962 4.21799 5.0918C4.40973 4.71547 4.71547 4.40973 5.0918 4.21799C5.51962 4 6.08009 4 7.2002 4H16.8002C17.9203 4 18.4796 4 18.9074 4.21799C19.2837 4.40973 19.5905 4.71547 19.7822 5.0918C20 5.5192 20 6.07899 20 7.19691V12.6747C20 12.7973 20 12.9045 19.9991 13M13 19.9991C13.2857 19.9966 13.4663 19.9862 13.6388 19.9448C13.8429 19.8958 14.0379 19.8147 14.2168 19.705C14.4186 19.5814 14.5916 19.4089 14.9375 19.063L19.063 14.9375C19.4089 14.5916 19.5809 14.4186 19.7046 14.2168C19.8142 14.0379 19.8953 13.8424 19.9443 13.6384C19.9857 13.4659 19.9964 13.2855 19.9991 13M13 19.9991V14.6001C13 14.04 13 13.7598 13.109 13.5459C13.2049 13.3577 13.3577 13.2049 13.5459 13.109C13.7598 13 14.0396 13 14.5996 13H19.9991"></path>
+                        </svg>
+                        Notes</p>
+                    </div>
+
+                    {{ form_widget(form) }}
+                    <div id="edit-button-container">
+                        <a class="clear_note" href="{{ path("app_plan_modifier", {"idSalle": salle.id}) }}">
+                            <p style="font-weight: 500; font-size:1.2vw">Tout effacer</p>
+                        </a>
+                        <button type="submit" form="ajoutNoteForm" class="new_note">
+                            <p style="font-weight: 500; font-size:1.2vw">Ajouter</p>
+                        </button>
+                    </div>
+                </div>
+                {{ form_end(form) }}
+            </div>
+
+        </div>
+        <div id="body-right">
+            <div id="infos" class="container">
+                <div id="infos-historique-notes">
+                    <div class="titre_info">
+                        <svg fill="#2BA801" width="64px" height="64px" viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg" stroke="#2BA801"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M561 125q-101 0-188 51-85 49-135 134-51 87-51 189H62l162 162 3 5 168-167H270q0-79 40-147 39-66 105-105 67-39 146.5-39T708 248q66 38 105 104 39 68 39 147t-39 147q-39 66-105 104-67 40-147 40-59 0-112-22.5T356 704l-59 59q52 52 119 81 69 29 145 29 102 0 189-51 85-49 135-134 51-87 51-189t-51-189q-50-85-135-134-87-51-189-51zm-41 208v208l178 105 30-50-146-86V333h-62z"></path></g></svg>
+                        <p style="margin-right: 2vw">Historique des notes</p>
+
+                        <!-- Liste étage -->
+                        <select id="list-type" class="list-options">
+                            <option value="tout">Tout</option>
+                            {% for type in  typeNote %}
+                                <option value="{{ type.value }}">{{ type.value }}</option>
+                            {% endfor %}
+                        </select>
+
+                    </div>
+                    <div id="liste-notes" data-salle-id="{{ salle.id }}"></div>
+                </div>
+                <div id="infos-separator"></div>
+
+                <div id="infos-guideline">
+                    <div id="infos-guideline-top">
+                        <!-- svg livre -->
+                        <svg width="64px" height="64px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 10.4V20M12 10.4C12 8.15979 12 7.03969 11.564 6.18404C11.1805 5.43139 10.5686 4.81947 9.81596 4.43597C8.96031 4 7.84021 4 5.6 4H4.6C4.03995 4 3.75992 4 3.54601 4.10899C3.35785 4.20487 3.20487 4.35785 3.10899 4.54601C3 4.75992 3 5.03995 3 5.6V16.4C3 16.9601 3 17.2401 3.10899 17.454C3.20487 17.6422 3.35785 17.7951 3.54601 17.891C3.75992 18 4.03995 18 4.6 18H7.54668C8.08687 18 8.35696 18 8.61814 18.0466C8.84995 18.0879 9.0761 18.1563 9.29191 18.2506C9.53504 18.3567 9.75977 18.5065 10.2092 18.8062L12 20M12 10.4C12 8.15979 12 7.03969 12.436 6.18404C12.8195 5.43139 13.4314 4.81947 14.184 4.43597C15.0397 4 16.1598 4 18.4 4H19.4C19.9601 4 20.2401 4 20.454 4.10899C20.6422 4.20487 20.7951 4.35785 20.891 4.54601C21 4.75992 21 5.03995 21 5.6V16.4C21 16.9601 21 17.2401 20.891 17.454C20.7951 17.6422 20.6422 17.7951 20.454 17.891C20.2401 18 19.9601 18 19.4 18H16.4533C15.9131 18 15.643 18 15.3819 18.0466C15.15 18.0879 14.9239 18.1563 14.7081 18.2506C14.465 18.3567 14.2402 18.5065 13.7908 18.8062L12 20" stroke="#2BA801" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+                        <p>Guideline</p>
+                        <a href="{{ asset('guideline.pdf') }}" target="_blank" class="button-type2 button-confirm">Cliquer pour voir</a>
+                    </div>
+                    <div id="infos-guideline-separator"></div>
+                    <p id="infos-guideline-texte">Guide d'installation des sa (PDF)</p>
+                </div>
+
+            </div>
+
+            <a href="{{ path('app_plan') }}" class="button-type1 button-cancel" id="delete-btn">
+                FERMER
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                    <path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6
+                        105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0
+                        45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256
+                        342.6 150.6z"/>
+                </svg>
+            </a>
+        </div>
+    </div>
+
+
+{% endblock %}
+
+{% block script %}
+    <script src="{{ asset('js/changeEtatSA.js') }}"></script>
+{% endblock %}

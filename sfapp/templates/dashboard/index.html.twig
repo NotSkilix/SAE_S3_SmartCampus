@@ -1,0 +1,404 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+    <link rel="stylesheet" href="{{ asset('style/dashboard.css') }}">
+{% endblock %}
+
+{% block header %}
+    <div class="header-titre">
+        <p id="header-titre"><strong>DASHBOARD</strong></p><div id="bar"></div><p id="header-titre-batiment">BATIMENT : <strong>{{ batiment_nom }}</strong></p>
+    </div>
+{% endblock %}
+
+{% block body %}
+<div id ="page-body">
+    <div id="box-welcome">
+        <div id="box-welcome-info">
+            <h3 id="date" style ="font-weight : 600; font-size : 1vw;color: var(--vert);"></h3>
+            <h1 style ="letter-spacing: 0.1vw; font-weight : 600;">Bienvenue sur Smart Campus</h1>
+            <h3 style ="font-weight : 600; font-size : 1vw;color: rgba(0, 0, 0, 0.8);">
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    Vous êtes connecté en tant que {{ app.user.nom }}
+                {% else %}
+                    Vous n'êtes pas connecté
+                {% endif %}
+            </h3>
+
+            <div class ="page-batiment-button">
+                <svg viewBox="0 0 31 35" width="3vh" height ="3vh" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3.875 0C1.73568 0 0 1.46973 0 3.28125V31.7188C0 33.5303 1.73568 35 3.875 35H11.625V29.5312C11.625 27.7197 13.3607 26.25 15.5 26.25C17.6393 26.25 19.375 27.7197 19.375 29.5312V35H27.125C29.2643 35 31 33.5303 31 31.7188V3.28125C31 1.46973 29.2643 0 27.125 0H3.875ZM5.16667 16.4062C5.16667 15.8047 5.74792 15.3125 6.45833 15.3125H9.04167C9.75208 15.3125 10.3333 15.8047 10.3333 16.4062V18.5938C10.3333 19.1953 9.75208 19.6875 9.04167 19.6875H6.45833C5.74792 19.6875 5.16667 19.1953 5.16667 18.5938V16.4062ZM14.2083 15.3125H16.7917C17.5021 15.3125 18.0833 15.8047 18.0833 16.4062V18.5938C18.0833 19.1953 17.5021 19.6875 16.7917 19.6875H14.2083C13.4979 19.6875 12.9167 19.1953 12.9167 18.5938V16.4062C12.9167 15.8047 13.4979 15.3125 14.2083 15.3125ZM20.6667 16.4062C20.6667 15.8047 21.2479 15.3125 21.9583 15.3125H24.5417C25.2521 15.3125 25.8333 15.8047 25.8333 16.4062V18.5938C25.8333 19.1953 25.2521 19.6875 24.5417 19.6875H21.9583C21.2479 19.6875 20.6667 19.1953 20.6667 18.5938V16.4062ZM6.45833 6.5625H9.04167C9.75208 6.5625 10.3333 7.05469 10.3333 7.65625V9.84375C10.3333 10.4453 9.75208 10.9375 9.04167 10.9375H6.45833C5.74792 10.9375 5.16667 10.4453 5.16667 9.84375V7.65625C5.16667 7.05469 5.74792 6.5625 6.45833 6.5625ZM12.9167 7.65625C12.9167 7.05469 13.4979 6.5625 14.2083 6.5625H16.7917C17.5021 6.5625 18.0833 7.05469 18.0833 7.65625V9.84375C18.0833 10.4453 17.5021 10.9375 16.7917 10.9375H14.2083C13.4979 10.9375 12.9167 10.4453 12.9167 9.84375V7.65625ZM21.9583 6.5625H24.5417C25.2521 6.5625 25.8333 7.05469 25.8333 7.65625V9.84375C25.8333 10.4453 25.2521 10.9375 24.5417 10.9375H21.9583C21.2479 10.9375 20.6667 10.4453 20.6667 9.84375V7.65625C20.6667 7.05469 21.2479 6.5625 21.9583 6.5625Z"
+                          fill="#2BA801"/>
+                </svg>
+                <a style ="font-weight : 600;" id="button-batiment">Changer le batiment actuel</a>
+            </div>
+        </div>
+
+    </div>
+    <div id="box-score">
+        <div class="box-title">
+            <svg class="title-svg" width="64px" height="64px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path fill="none" d="M3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21C7.02944
+                21 3 16.9706 3 12Z" stroke-width="2"></path>
+                <path fill="none" d="M15 9L9 15" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M16 14.5C16 15.3284 15.3284 16 14.5 16C13.6716 16 13 15.3284 13 14.5C13 13.6716 13.6716 13 14.5 13C15.3284 13 16 13.6716 16 14.5Z"></path>
+                <path d="M11 9.5C11 10.3284 10.3284 11 9.5 11C8.67157 11 8 10.3284 8 9.5C8 8.67157 8.67157 8 9.5 8C10.3284 8 11 8.67157 11 9.5Z"></path>
+            </svg>
+            <h1>Score global de confort environnemental</h1>
+        </div>
+
+        <div class="box-content">
+            <div id="score-container" class="score-value">
+                <div class="loader loader--style2" title="1">
+                    <svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                         width="7vw" height="5vh" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve">
+                          <path fill="var(--vert)" d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z">
+                              <animateTransform attributeType="xml"
+                                                attributeName="transform"
+                                                type="rotate"
+                                                from="0 25 25"
+                                                to="360 25 25"
+                                                dur="0.6s"
+                                                repeatCount="indefinite"/>
+                          </path>
+                          </svg>
+                </div>
+            </div>
+            <div class="separator"></div>
+            <p class="score-explanation">Score basé sur les 3 critères (température, humidité et CO2).</p>
+        </div>
+
+        {% if is_granted('ROLE_TECHNICIEN') %}
+            <a href="{{ path("app_diagnostic", {'localisation':'first'}) }}" class="box-button">
+                <svg width="64px" height="64px" viewBox="-3 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                    <g id="Icon-Set-Filled" transform="translate(-314.000000, -673.000000)">
+                        <path d="M328,673 L326,673 C324.896,673 324,673.896 324,675 L324,703 C324,704.104 324.896,705
+                    326,705 L328,705 C329.104,705 330,704.104 330,703 L330,675 C330,673.896 329.104,673 328,673 L328,673
+                    Z M338,689 L336,689 C334.896,689 334,689.896 334,691 L334,703 C334,704.104 334.896,705 336,705
+                    L338,705 C339.104,705 340,704.104 340,703 L340,691 C340,689.896 339.104,689 338,689 L338,689 Z
+                    M318,682 L316,682 C314.896,682 314,682.896 314,684 L314,703 C314,704.104 314.896,705 316,705
+                    L318,705 C319.104,705 320,704.104 320,703 L320,684 C320,682.896 319.104,682 318,682 L318,682 Z"></path>
+                    </g>
+                </svg>
+                Voir les statistiques globales du bâtiment
+            </a>
+        {% endif %}
+    </div>
+
+    <!-- Si l'utilisateur est technicien -->
+    {% if is_granted("ROLE_TECHNICIEN") and not is_granted("ROLE_CHARGEMISSION")%}
+        <div id="box-plans">
+            <div class = "list-install">
+                <div id ="list-install-title">
+                    <svg class="nav-lien-img" height ="4vh" width="6vw" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="#4493D3" d="M438.6 150.6c12.5-12.5 12.5-32.8 0-45.3l-96-96c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.7 96 32 96C14.3 96 0 110.3 0 128s14.3 32 32 32l306.7 0-41.4 41.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l96-96zm-333.3 352c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 416 416 416c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0 41.4-41.4c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-96 96c-12.5 12.5-12.5 32.8 0 45.3l96 96z"/></svg>
+                    <p style="font-size:1.5vw ; font-weight: 600; ">Liste des plans : </p>
+                    <p style="font-size:1.5vw ; color : #4493D3; font-weight: 600; letter-spacing: 0.05vw">à installer</p>
+                </div>
+                <div class="list-ligne"></div>
+                <div id="list-install-description">
+                    <p style="font-weight: 700; font-size: 2vw; color:#333333;">  {{ systemAcquisitionsInstall }}</p>
+                    <p style="width : 25vw; font-weight: 500">nouveaux SA sont a installer dans leurs salles</p>
+                    {% if displayInstall %}
+                    <div class ="page-button" data-etat="À installer">
+                        <a id="button-install">Voir plus</a>
+                    </div>
+                    {% else %}
+                        <svg style="margin-left: 6vw" fill="#4493D3" version="1.1" width="1.5vw" height="1.5vw" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="64px" height="64px" viewBox="0 0 335.765 335.765" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <g> <polygon points="311.757,41.803 107.573,245.96 23.986,162.364 0,186.393 107.573,293.962 335.765,65.795 "></polygon> </g> </g> </g></svg>
+                    {% endif %}
+
+
+                </div>
+            </div>
+            <div class = "list-intervention">
+                <div id ="list-intervention-title">
+                    <svg class="nav-lien-img" height ="4vh" width="6vw" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="#FDB900" d="M438.6 150.6c12.5-12.5 12.5-32.8 0-45.3l-96-96c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.7 96 32 96C14.3 96 0 110.3 0 128s14.3 32 32 32l306.7 0-41.4 41.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l96-96zm-333.3 352c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 416 416 416c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0 41.4-41.4c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-96 96c-12.5 12.5-12.5 32.8 0 45.3l96 96z"/></svg>
+                    <p style="font-size:1.5vw ; font-weight: 600; ">Liste des plans : </p>
+                    <p style="font-size:1.5vw ; color : #FDB900; font-weight: 600; letter-spacing: 0.05vw">Intervention nécéssaires </p>
+                </div>
+                <div class="list-ligne"></div>
+                <div id="list-intervention-description">
+                    <p style="font-weight: 700; font-size: 2vw; color:#333333;">  {{ systemAcquisitionsIntervention }}</p>
+                    <p style="width : 25vw; font-weight: 500">SA nécessite une intervension dans leurs salles attribué.</p>
+                    {% if displayIntervention %}
+                        <div class ="page-button" data-etat="Intervention nécessaire">
+                            <a id="button-intervention">Voir plus</a>
+                        </div>
+                    {% else %}
+                        <svg style="margin-left: 6vw" fill="#FDB900" version="1.1" width="1.5vw" height="1.5vw" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="64px" height="64px" viewBox="0 0 335.765 335.765" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <g> <polygon points="311.757,41.803 107.573,245.96 23.986,162.364 0,186.393 107.573,293.962 335.765,65.795 "></polygon> </g> </g> </g></svg>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div id="box-info">
+            <div class="titre_probleme_note">
+                <svg width="37" height="37" viewBox="0 0 37 37" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M18.5 0.624942C14.9647 0.624942 11.5087 1.67329 8.56919 3.63742C5.62966 5.60155 3.33858 8.39325 1.98566 11.6595C0.632745 14.9257 0.27876 18.5198 0.968471 21.9872C1.65818 25.4546 3.36061 28.6396 5.86047 31.1395C8.36034 33.6393 11.5454 35.3418 15.0128 36.0315C18.4802 36.7212 22.0742 36.3672 25.3405 35.0143C28.6067 33.6614 31.3984 31.3703 33.3625 28.4308C35.3267 25.4912 36.375 22.0353 36.375 18.4999C36.3858 16.1496 35.9308 13.8203 35.0363 11.6468C34.1418 9.47322 32.8255 7.49842 31.1635 5.83642C29.5015 4.17443 27.5267 2.85818 25.3532 1.96369C23.1796 1.06919 20.8504 0.614185 18.5 0.624942ZM20.125 26.6249C20.125 27.0559 19.9538 27.4692 19.6491 27.774C19.3443 28.0787 18.931 28.2499 18.5 28.2499C18.069 28.2499 17.6557 28.0787 17.351 27.774C17.0462 27.4692 16.875 27.0559 16.875 26.6249V16.8749C16.875 16.444 17.0462 16.0306 17.351 15.7259C17.6557 15.4211 18.069 15.2499 18.5 15.2499C18.931 15.2499 19.3443 15.4211 19.6491 15.7259C19.9538 16.0306 20.125 16.444 20.125 16.8749V26.6249ZM18.5 11.9999C18.1786 11.9999 17.8644 11.9046 17.5972 11.7261C17.33 11.5475 17.1217 11.2937 16.9987 10.9968C16.8757 10.6999 16.8435 10.3731 16.9062 10.0579C16.9689 9.7427 17.1237 9.45316 17.351 9.22589C17.5782 8.99863 17.8678 8.84387 18.183 8.78117C18.4982 8.71847 18.8249 8.75065 19.1219 8.87364C19.4188 8.99663 19.6726 9.20491 19.8511 9.47214C20.0297 9.73937 20.125 10.0535 20.125 10.3749C20.125 10.8059 19.9538 11.2192 19.6491 11.524C19.3443 11.8287 18.931 11.9999 18.5 11.9999Z" fill="#2BA801"/>
+                </svg>
+                <p>Nouvelles Informations signalée</p>
+            </div>
+            <div class="separator_note"></div>
+            <div class="body_probleme">
+                {% if notes is empty and noteBatiments is empty%}
+                    <p>Aucunes informations signalées</p>
+
+                {% else %}
+                    {% for note in notes %}
+                        <div class="note_probleme">
+                            <div class="header_note_probleme">
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 15H12.01M12 12V9M4.98207 19H19.0179C20.5615 19 21.5233 17.3256 20.7455 15.9923L13.7276 3.96153C12.9558 2.63852 11.0442 2.63852 10.2724 3.96153L3.25452 15.9923C2.47675 17.3256 3.43849 19 4.98207 19Z" stroke-linecap="round"></path> </g></svg>
+                                {{ note.titre }}
+                                <a class="plan_note" href="{{ path("app_plan_modifier", {"idSalle": note.salle.id}) }}">
+                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M13.7063 4.11962C14.0969 3.77785 14.0969 3.22283 13.7063 2.88107L10.7063 0.256323C10.3156 -0.0854409 9.68125 -0.0854409 9.29062 0.256323C8.9 0.598086 8.9 1.15311 9.29062 1.49487L10.5844 2.62679H1C0.446875 2.62679 0 3.01777 0 3.50171C0 3.98565 0.446875 4.37662 1 4.37662H10.5844L9.29062 5.50854C8.9 5.85031 8.9 6.40533 9.29062 6.7471C9.68125 7.08886 10.3156 7.08886 10.7063 6.7471L13.7063 4.12235V4.11962ZM3.29063 13.7437C3.68125 14.0854 4.31563 14.0854 4.70625 13.7437C5.09688 13.4019 5.09688 12.8469 4.70625 12.5051L3.41563 11.3759H13C13.5531 11.3759 14 10.985 14 10.501C14 10.0171 13.5531 9.62611 13 9.62611H3.41563L4.70937 8.49419C5.1 8.15243 5.1 7.5974 4.70937 7.25564C4.31875 6.91388 3.68438 6.91388 3.29375 7.25564L0.29375 9.88038C-0.096875 10.2221 -0.096875 10.7772 0.29375 11.1189L3.29375 13.7437H3.29063Z" fill="black"/>
+                                    </svg>
+                                    Plan
+                                </a>
+                                <a class="marquelu_note" href="{{ path("app_plan_probleme_dashboard", {"idProbleme": note.id}) }}">Marquer comme lu</a>
+                            </div>
+                            <div class="text_note_probleme">{{ note.texte }}</div>
+                        </div>
+                    {% endfor %}
+
+                    {% for noteBatiment in noteBatiments %}
+                        <div class="note_probleme">
+                            <div class="header_note_probleme">
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 15H12.01M12 12V9M4.98207 19H19.0179C20.5615 19 21.5233 17.3256 20.7455 15.9923L13.7276 3.96153C12.9558 2.63852 11.0442 2.63852 10.2724 3.96153L3.25452 15.9923C2.47675 17.3256 3.43849 19 4.98207 19Z" stroke-linecap="round"></path> </g></svg>
+                                {{ noteBatiment.titre }}
+                                <a class="marquelu_note" href="{{ path("app_plan_probleme_dashboard", {"idProbleme": noteBatiment.id}) }}">Marquer comme lu</a>
+                            </div>
+                            <div class="text_note_probleme">{{ noteBatiment.texte }}</div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+
+    <!-- Chargé de mission -->
+    {% elseif is_granted("ROLE_CHARGEMISSION") %}
+        <div class="box-advice">
+            <div id="box-advice-info">
+                <div id="advice-title">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="39" height="39" viewBox="0 0 39 39" fill="none">
+                        <path d="M19.5 1.62506C15.9647 1.62506 12.5087 2.67341 9.56919 4.63755C6.62966 6.60168 4.33858 9.39337 2.98566 12.6596C1.63275 15.9258 1.27876 19.5199 1.96847 22.9873C2.65818 26.4547 4.36061 29.6397 6.86047 32.1396C9.36034 34.6395 12.5454 36.3419 16.0128 37.0316C19.4802 37.7213 23.0742 37.3673 26.3405 36.0144C29.6067 34.6615 32.3984 32.3704 34.3625 29.4309C36.3267 26.4914 37.375 23.0354 37.375 19.5001C37.3858 17.1497 36.9308 14.8204 36.0363 12.6469C35.1418 10.4733 33.8255 8.49854 32.1635 6.83655C30.5015 5.17455 28.5267 3.8583 26.3532 2.96381C24.1796 2.06931 21.8504 1.61431 19.5 1.62506ZM21.125 27.6251C21.125 28.056 20.9538 28.4694 20.6491 28.7741C20.3443 29.0789 19.931 29.2501 19.5 29.2501C19.069 29.2501 18.6557 29.0789 18.351 28.7741C18.0462 28.4694 17.875 28.056 17.875 27.6251V17.8751C17.875 17.4441 18.0462 17.0308 18.351 16.726C18.6557 16.4213 19.069 16.2501 19.5 16.2501C19.931 16.2501 20.3443 16.4213 20.6491 16.726C20.9538 17.0308 21.125 17.4441 21.125 17.8751V27.6251ZM19.5 13.0001C19.1786 13.0001 18.8644 12.9048 18.5972 12.7262C18.33 12.5476 18.1217 12.2939 17.9987 11.9969C17.8757 11.7 17.8435 11.3733 17.9062 11.058C17.9689 10.7428 18.1237 10.4533 18.351 10.226C18.5782 9.99876 18.8678 9.84399 19.183 9.78129C19.4982 9.71859 19.8249 9.75077 20.1219 9.87376C20.4188 9.99675 20.6726 10.205 20.8511 10.4723C21.0297 10.7395 21.125 11.0537 21.125 11.3751C21.125 11.806 20.9538 12.2194 20.6491 12.5241C20.3443 12.8289 19.931 13.0001 19.5 13.0001Z" fill="#2BA801"/>
+                    </svg>
+                    <h3>Informations signalées</h3>
+
+                    <!-- Si aucune note à envoyer -->
+                    {% if listNoteNonEnvoye is empty %}
+                    <div style="width: 50vw ; display : flex; justify-content: flex-end ; gap : 0.7vw ; align-items: center">
+                        <p>Aucune information récente</p>
+                        <svg style="margin-left: 1vw" fill="#2BA801" version="1.1" width="1.5vw" height="1.5vw"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="64px" height="64px" viewBox="0 0 335.765 335.765" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <g> <polygon points="311.757,41.803 107.573,245.96 23.986,162.364 0,186.393 107.573,293.962 335.765,65.795 "></polygon> </g> </g> </g></svg>
+                    </div>
+
+                    <!-- Si il y a des notes non envoyées-->
+                    {% else %}
+                        <div style="width: 50vw ; display : flex; justify-content: flex-end ; gap : 0.7vw">
+                            <p style ="color : var(--vert); font-weight: 600">{{ nbNotesNonEnvoye }}</p>
+                            <p>nouvelles informations</p>
+                        </div>
+                </div>
+
+                <div id="conseils-box">
+                    {% for note in listNoteNonEnvoye %}
+                        <div class="item-note" >
+                            <div id="item-note-titre">
+                                <p style="width : 7vw">{{ note.titre }}</p>
+                            </div>
+                            <div id="item-note-description">
+                                <svg style="width:1.5vw ;height:1.5vw" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 15H12.01M12 12V9M4.98207 19H19.0179C20.5615 19 21.5233 17.3256 20.7455 15.9923L13.7276 3.96153C12.9558 2.63852 11.0442 2.63852 10.2724 3.96153L3.25452 15.9923C2.47675 17.3256 3.43849 19 4.98207 19Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+                                <p>{{ note.texte }}</p>
+                            </div>
+
+                            <div id="item-note-conseil">
+                                <p style="width : 7vw">{{ note.conseil }}</p>
+                            </div>
+                            <div id="item-note-bot" data-note-id="{{ note.id }}">
+                                <!-- "Boutons" -->
+
+                                <button id="button-note" class="button-send-note" style="cursor:pointer">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="1.7vw" height="1.7vh" viewBox="0 0 13 13" fill="none">
+                                    <path d="M9 6.5C9 7.88075 7.88075 9 6.5 9C5.11925 9 4 7.88075 4 6.5C4 5.11925 5.11925 4 6.5 4C7.88075 4 9 5.11925 9 6.5Z" stroke="#2BA801" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M7.05281 1.0367C6.92704 1 6.78472 1 6.5 1C6.21528 1 6.07296 1 5.94719 1.0367C5.76312 1.09041 5.60051 1.20049 5.48226 1.35146C5.40147 1.45459 5.34861 1.58676 5.24289 1.85111C5.09089 2.2311 4.66907 2.42677 4.28079 2.29739L3.93198 2.18116C3.68455 2.09869 3.56083 2.05744 3.43953 2.05038C3.26135 2.04 3.08401 2.08186 2.92928 2.17083C2.82395 2.2314 2.73174 2.32361 2.54731 2.50804C2.3513 2.70405 2.25329 2.80206 2.19103 2.91393C2.09955 3.07829 2.06086 3.26682 2.08019 3.45392C2.09335 3.58127 2.14483 3.70997 2.24778 3.96735C2.40901 4.37042 2.2539 4.83092 1.88166 5.05431L1.71207 5.15609C1.45241 5.31188 1.32258 5.38979 1.22827 5.49704C1.14482 5.59195 1.08189 5.70311 1.04344 5.8235C1 5.95953 1 6.11243 1 6.41829C1 6.78044 1 6.96145 1.05782 7.11649C1.10892 7.25344 1.19202 7.37615 1.3002 7.47448C1.42263 7.5857 1.58908 7.65231 1.92196 7.78547C2.26215 7.92151 2.43731 8.29917 2.32144 8.64677L2.18996 9.04124C2.09889 9.31441 2.05335 9.45105 2.04922 9.58526C2.04424 9.74665 2.08197 9.90646 2.15859 10.0485C2.22231 10.1668 2.32414 10.2686 2.52778 10.4722C2.73142 10.6758 2.83324 10.7777 2.95143 10.8414C3.09354 10.918 3.25337 10.9558 3.41474 10.9508C3.54896 10.9466 3.68556 10.9011 3.95878 10.81L4.28082 10.7027C4.66907 10.5733 5.0909 10.7689 5.24289 11.1489C5.34861 11.4132 5.40147 11.5454 5.48226 11.6485C5.60051 11.7995 5.76312 11.9096 5.94719 11.9633C6.07296 12 6.21528 12 6.5 12C6.78472 12 6.92704 12 7.05281 11.9633C7.23688 11.9096 7.39949 11.7995 7.51774 11.6485C7.59853 11.5454 7.65139 11.4132 7.75712 11.1489C7.9091 10.7689 8.33095 10.5733 8.71913 10.7028L9.04094 10.8101C9.31417 10.9012 9.45081 10.9467 9.58501 10.9508C9.74641 10.9558 9.90621 10.9181 10.0483 10.8415C10.1665 10.7777 10.2684 10.6759 10.472 10.4723C10.6756 10.2687 10.7774 10.1668 10.8412 10.0486C10.9178 9.90652 10.9555 9.74665 10.9505 9.58532C10.9464 9.45112 10.9009 9.31447 10.8098 9.04124L10.6784 8.64708C10.5625 8.29936 10.7377 7.92157 11.078 7.78547C11.4109 7.65231 11.5774 7.5857 11.6998 7.47448C11.808 7.37615 11.8911 7.25344 11.9422 7.11649C12 6.96145 12 6.78044 12 6.41829C12 6.11243 12 5.95953 11.9565 5.8235C11.9181 5.70311 11.8552 5.59195 11.7717 5.49704C11.6774 5.38979 11.5476 5.31188 11.2879 5.15609L11.1181 5.05421C10.7459 4.83085 10.5907 4.37036 10.752 3.9673C10.8549 3.70993 10.9064 3.58123 10.9196 3.45387C10.9389 3.26677 10.9002 3.07825 10.8087 2.91388C10.7464 2.80201 10.6485 2.704 10.4524 2.50799C10.268 2.32357 10.1758 2.23135 10.0705 2.17079C9.91574 2.08181 9.7384 2.03995 9.5602 2.05033C9.43889 2.0574 9.31521 2.09864 9.06777 2.18111L8.71919 2.29731C8.33095 2.42672 7.9091 2.23108 7.75712 1.85111C7.65139 1.58676 7.59853 1.45459 7.51774 1.35146C7.39949 1.20049 7.23688 1.09041 7.05281 1.0367Z" stroke="#2BA801" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                    <span>Transmettre au technicien</span>
+                                </button>
+                                <button id="button-note" id="openModal" class="bouton-edit-note" style="cursor:pointer" onclick="location.href = '{{ path("app_dashboard", {"idNote": note.id}) }}';">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="1.7vw" height="1.7vh" viewBox="0 0 13 13" fill="none">
+                                        <path d="M11.1682 0.388968C10.6496 -0.129656 9.81124 -0.129656 9.29261 0.388968V0.388968C8.89913 0.781145 8.8986 1.41821 9.29143 1.81104L10.1854 2.70502C10.5791 3.09869 11.2174 3.09869 11.611 2.70502V2.70502C12.1297 2.18639 12.1297 1.34807 11.611 0.829444L11.1682 0.388968ZM4.08269 5.59889C3.93823 5.74335 3.82693 5.92096 3.76299 6.11752L3.06202 8.22044C2.99334 8.4241 3.04781 8.64907 3.19937 8.803C3.35093 8.95693 3.5759 9.00903 3.78193 8.94035L5.88485 8.23938C6.07904 8.17544 6.25665 8.06414 6.40347 7.91968L9.20569 5.11579C9.84623 4.47487 9.84607 3.43609 9.20534 2.79535V2.79535C8.56434 2.15435 7.52502 2.15451 6.88421 2.7957L4.08269 5.59889ZM2.27342 1.3907C1.0183 1.3907 0 2.409 0 3.66412V9.72658C0 10.9817 1.0183 12 2.27342 12H8.33588C9.591 12 10.6093 10.9817 10.6093 9.72658V7.45316C10.6093 7.03399 10.2707 6.69535 9.8515 6.69535C9.43234 6.69535 9.09369 7.03399 9.09369 7.45316V9.72658C9.09369 10.1457 8.75505 10.4844 8.33588 10.4844H2.27342C1.85426 10.4844 1.51562 10.1457 1.51562 9.72658V3.66412C1.51562 3.24496 1.85426 2.90631 2.27342 2.90631H4.54685C4.96601 2.90631 5.30465 2.56766 5.30465 2.1485C5.30465 1.72934 4.96601 1.3907 4.54685 1.3907H2.27342Z" fill="#2BA801"/>
+                                    </svg>
+                                    <span>Modifier l'instruction</span>
+                                </button>
+                                <button id="button-note" class="button-ignore-note" style="cursor:pointer">
+                                    <svg fill ="red" width="1.7vw" height="1.7vh"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M135.2 17.7C140.6 6.8 151.7 0 163.8 0L284.2 0c12.1 0 23.2 6.8 28.6 17.7L320 32l96 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 96C14.3 96 0 81.7 0 64S14.3 32 32 32l96 0 7.2-14.3zM32 128l384 0 0 320c0 35.3-28.7 64-64 64L96 512c-35.3 0-64-28.7-64-64l0-320zm96 64c-8.8 0-16 7.2-16 16l0 224c0 8.8 7.2 16 16 16s16-7.2 16-16l0-224c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16l0 224c0 8.8 7.2 16 16 16s16-7.2 16-16l0-224c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16l0 224c0 8.8 7.2 16 16 16s16-7.2 16-16l0-224c0-8.8-7.2-16-16-16z"/></svg>
+                                    <span >Ne pas prendre en compte</span>
+                                </button>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+    <!-- Utilisateur lambda-->
+    {% else %}
+        <div class="box-advice">
+            <div id="box-advice-info">
+                <div id="advice-title">
+                    <svg width="3.5vh" height="2.5vw" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M16.19 2H7.81C4.17 2 2 4.17 2 7.81V16.19C2 19.83 4.17 22 7.81 22H16.19C19.83 22 22 19.83 22 16.19V7.81C22 4.17 19.83 2 16.19 2ZM9.97 14.9L7.72 17.15C7.57 17.3 7.38 17.37 7.19 17.37C7 17.37 6.8 17.3 6.66 17.15L5.91 16.4C5.61 16.11 5.61 15.63 5.91 15.34C6.2 15.05 6.67 15.05 6.97 15.34L7.19 15.56L8.91 13.84C9.2 13.55 9.67 13.55 9.97 13.84C10.26 14.13 10.26 14.61 9.97 14.9ZM9.97 7.9L7.72 10.15C7.57 10.3 7.38 10.37 7.19 10.37C7 10.37 6.8 10.3 6.66 10.15L5.91 9.4C5.61 9.11 5.61 8.63 5.91 8.34C6.2 8.05 6.67 8.05 6.97 8.34L7.19 8.56L8.91 6.84C9.2 6.55 9.67 6.55 9.97 6.84C10.26 7.13 10.26 7.61 9.97 7.9ZM17.56 16.62H12.31C11.9 16.62 11.56 16.28 11.56 15.87C11.56 15.46 11.9 15.12 12.31 15.12H17.56C17.98 15.12 18.31 15.46 18.31 15.87C18.31 16.28 17.98 16.62 17.56 16.62ZM17.56 9.62H12.31C11.9 9.62 11.56 9.28 11.56 8.87C11.56 8.46 11.9 8.12 12.31 8.12H17.56C17.98 8.12 18.31 8.46 18.31 8.87C18.31 9.28 17.98 9.62 17.56 9.62Z" fill="#2BA801"></path> </g></svg>
+                    <h3>Conseils :</h3>
+                </div>
+                <div id="conseils-box">
+                    <!-- Si les conseils sont vide -->
+                    {% if listConseil is empty %}
+                        <p> Il n'y a actuellement aucun conseils</p>
+
+                    {% else %}
+                        <!-- Affichage de chaque conseils -->
+                        {% for conseils in listConseil %}
+                            <div id="conseils">
+                                {% if conseils.type.value == 'Température' %}
+                                    <div id="conseils-salle">
+                                        <div id="conseils-salle-top">
+                                            <p>SALLE <strong>{{ conseils.nomSalle }}</strong></p>
+                                            <p style="color : #E61313 ; font-weight: 600 ; font-size: 0.9vw">{{ conseils.valeur }}°C</p>
+                                        </div>
+                                        <div id="conseils-salle-bot">
+                                            <svg width="21" height="32" viewBox="0 0 23 34" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.7437 26.8165C11.7137 26.8165 12.5 26.1777 12.5 25.3896C12.5 24.6015 11.7137 23.9626 10.7437 23.9626C9.77366 23.9626 8.9873 24.6015 8.9873 25.3896C8.9873 26.1777 9.77366 26.8165 10.7437 26.8165Z" stroke="#FD1900" stroke-opacity="0.81" stroke-width="3" stroke-miterlimit="10"/> <path d="M17.75 21.1706V6.90111C17.6563 5.44483 16.8783 4.0733 15.5764 3.06941C14.2745 2.06552 12.5481 1.50586 10.7532 1.50586C8.95827 1.50586 7.23181 2.06552 5.92993 3.06941C4.62804 4.0733 3.85003 5.44483 3.75636 6.90111V21.1706C2.62331 22.3849 2.00688 23.8656 2 25.3894C2.10514 27.218 3.07327 28.9435 4.70329 30.2074C6.33332 31.4713 8.49995 32.1764 10.7532 32.1764C13.0064 32.1764 15.173 31.4713 16.8031 30.2074C18.4331 28.9435 19.4012 27.218 19.5064 25.3894C19.4995 23.8656 18.8831 22.3849 17.75 21.1706Z" stroke="#FD1900" stroke-opacity="0.81" stroke-width="3" stroke-miterlimit="10"/>
+                                                <path d="M10.7437 6.90112V23.9625" stroke="#FD1900" stroke-opacity="0.81" stroke-width="3" stroke-miterlimit="10"/> <path d="M17.75 8.32812H23" stroke="#FD1900" stroke-opacity="0.81" stroke-width="3" stroke-miterlimit="10"/> <path d="M17.75 14.0203H23" stroke="#FD1900" stroke-opacity="0.81" stroke-width="3" stroke-miterlimit="10"/><path d="M17.75 19.6973H23" stroke="#FD1900" stroke-opacity="0.81" stroke-width="3" stroke-miterlimit="10"/>
+                                            </svg>
+                                            <p style ="font-weight: 600">{{ conseils.type.value }}</p>
+                                        </div>
+                                    </div>
+
+                                {% elseif conseils.type.value == 'CO2' %}
+                                    <div id="conseils-salle">
+                                        <div id="conseils-salle-top">
+                                            <p>SALLE <strong>{{ conseils.nomSalle }}</strong></p>
+                                            <p style="color : #A501A8 ; font-weight: 600 ; font-size: 0.9vw">{{ conseils.valeur }}ppm</p>
+                                        </div>
+                                        <div id="conseils-salle-bot">
+                                            <svg width="32" height="23" viewBox="0 0 32 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M11.3333 12.763H20.6667M10.4 20.7293C5.7608 20.7293 2 17.5486 2 13.6251C2 10.3732 4.8 7.36905 9 6.78817C10.3175 4.11461 13.4355 2.14111 17.0722 2.14111C21.7307 2.14111 25.5382 5.22478 25.8 9.1117C28.2722 10.0343 30 12.2987 30 14.7504C30 18.0525 26.866 20.7293 23 20.7293H10.4Z" stroke="#A501A8" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>
+                                            <p style ="font-weight: 600">{{ conseils.type.value }}</p>
+                                        </div>
+                                    </div>
+                                {% elseif conseils.type.value == 'Humidité' %}
+                                    <div id="conseils-salle">
+                                        <div id="conseils-salle-top">
+                                            <p>SALLE <strong>{{ conseils.nomSalle }}</strong></p>
+                                            <p style="color : #4493D3 ; font-weight: 600 ; font-size: 0.9vw">{{ conseils.valeur }}%</p>
+                                        </div>
+                                        <div id="conseils-salle-bot">
+                                            <svg width="27" height="30" viewBox="0 0 27 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M11.4442 18.921C11.4442 18.2691 10.8389 17.7407 10.0922 17.7407C9.34552 17.7407 8.74023 18.2691 8.74023 18.921C8.74023 20.5232 9.10151 22.1521 10.2036 23.4029C11.3554 24.7102 13.1437 25.4127 15.5001 25.4127C16.2468 25.4127 16.852 24.8843 16.852 24.2324C16.852 23.5805 16.2468 23.0521 15.5001 23.0521C13.8005 23.0521 12.8848 22.5743 12.3468 21.9636C11.7589 21.2964 11.4442 20.2696 11.4442 18.921Z" fill="#4493D3"/>
+                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M15.7581 1.50701C14.5337 0.423085 12.4652 0.423128 11.241 1.50709C9.74318 2.83313 6.97894 5.40571 4.57926 8.33945C2.1848 11.2668 -0.0385821 14.6008 0.000507891 18.2222C0.00395187 18.5425 0.0246794 18.9921 0.0925909 19.5284C0.227478 20.5936 0.553275 22.0394 1.33279 23.5045C2.11573 24.976 3.37231 26.4946 5.37688 27.6411C7.39056 28.7929 10.0489 29.5059 13.4995 29.5059C16.9502 29.5059 19.6086 28.7929 21.6224 27.6411C23.6269 26.4946 24.8837 24.9762 25.6668 23.5047C26.4464 22.0396 26.7724 20.5936 26.9073 19.5284C26.9752 18.9922 26.996 18.5427 26.9995 18.2223C27.0388 14.6009 24.8149 11.2666 22.4204 8.33937C20.0204 5.40562 17.256 2.83304 15.7581 1.50701ZM7.21321 9.7958C9.44624 7.06581 12.0394 4.63913 13.4995 3.34262C14.9598 4.63912 17.5533 7.0658 19.7865 9.7958C21.8086 12.2677 23.8588 15.1269 23.8255 18.199C23.8228 18.4495 23.8063 18.8156 23.7502 19.258C23.6372 20.15 23.3679 21.3139 22.7588 22.4586C22.153 23.5968 21.2274 24.688 19.8097 25.4988C18.4013 26.3044 16.3974 26.8961 13.4995 26.8961C10.6017 26.8961 8.59797 26.3044 7.18956 25.4988C5.77204 24.688 4.84649 23.5968 4.24089 22.4586C3.63185 21.3139 3.36264 20.1501 3.24969 19.2581C3.19368 18.8156 3.17726 18.4496 3.17456 18.1991C3.14142 15.1271 5.19113 12.2679 7.21321 9.7958Z" fill="#4493D3"/>
+                                            </svg>
+                                            <p style ="font-weight: 600">{{ conseils.type.value }}</p>
+                                        </div>
+                                    </div>
+                                {% elseif conseils.type.value == 'Luminosité' %}
+                                    <div id="conseils-salle">
+                                        <div id="conseils-salle-top">
+                                            <p>SALLE <strong>{{ conseils.nomSalle }}</strong></p>
+                                        </div>
+                                        <div id="conseils-salle-bot">
+                                            <svg width="31" height="29" viewBox="0 0 31 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M15.5 2V3.38889M15.5 25.6111V27M3.5 14.5H2M6.97118 6.60294L5.75 5.47222M24.0288 6.60294L25.25 5.47222M6.97118 22.4028L5.75 23.5279M24.0288 22.4028L25.25 23.5279M29 14.5H27.5M21.5 14.5C21.5 17.5682 18.8137 20.0556 15.5 20.0556C12.1863 20.0556 9.5 17.5682 9.5 14.5C9.5 11.4317 12.1863 8.94444 15.5 8.94444C18.8137 8.94444 21.5 11.4317 21.5 14.5Z" stroke="#FDB900" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>
+                                            <p style ="font-weight: 600">{{ conseils.type.value }}</p>
+                                        </div>
+                                    </div>
+                                {% else %}
+                                    <div id="conseils-salle">
+                                        <div style="display : flex; justify-content: flex-start; padding-left: 1.5vw" id="conseils-salle-top">
+                                            <p>SALLE <strong>{{ conseils.nomSalle }}</strong></p>
+                                        </div>
+                                        <div id="conseils-salle-bot">
+                                            <svg width="31" height="29" viewBox="0 0 31 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M15.5 2V3.38889M15.5 25.6111V27M3.5 14.5H2M6.97118 6.60294L5.75 5.47222M24.0288 6.60294L25.25 5.47222M6.97118 22.4028L5.75 23.5279M24.0288 22.4028L25.25 23.5279M29 14.5H27.5M21.5 14.5C21.5 17.5682 18.8137 20.0556 15.5 20.0556C12.1863 20.0556 9.5 17.5682 9.5 14.5C9.5 11.4317 12.1863 8.94444 15.5 8.94444C18.8137 8.94444 21.5 11.4317 21.5 14.5Z" stroke="#FDB900" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>
+                                            <p style ="font-weight: 600">{{ conseils.type.value }}</p>
+                                        </div>
+                                    </div>
+                                {% endif %}
+
+
+                                <div id="conseils-description">
+                                    <svg style="width:2vw ;height:2vw" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 15H12.01M12 12V9M4.98207 19H19.0179C20.5615 19 21.5233 17.3256 20.7455 15.9923L13.7276 3.96153C12.9558 2.63852 11.0442 2.63852 10.2724 3.96153L3.25452 15.9923C2.47675 17.3256 3.43849 19 4.98207 19Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+                                    <p style ="width :80%">{{ conseils.description }}</p>
+                                </div>
+                                <div id="conseils-text">
+                                    <p style="width : 80%">{{ conseils.text }}</p>
+                                </div>
+
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    {% if idNote!=null %}
+        <!-- Fond grisé -->
+        <div id="modalBackdrop"></div>
+
+        <!-- Fenêtre modale -->
+        <div id="customModal" class="custom-modal">
+            <div class="custom-modal-content">
+                <div class="modal-container mt-5">
+                    <h1 class="display-4 text-center mb-4">Modifier le texte de la note</h1>
+                    <div class="row justify-content-center">
+                        <div class="col-md-6">
+                            <div class="card shadow-sm">
+                                <div class="card-body">
+                                    {{ form_start(form) }}
+
+                                    {# Loop through each form field to apply styles individually #}
+                                    {% for field in form %}
+                                        <div class="nom_batiment">
+                                            {{ form_widget(field, {'attr': {'class': 'form-control'}}) }}
+                                        </div>
+                                    {% endfor %}
+
+                                    <div class="btn_form">
+                                        <a id="closeModal" class="close-button button-type1 button-cancel" href="{{ path("app_dashboard") }}">
+                                            ANNULER
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                                                <path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6
+                                                        105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0
+                                                        45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256
+                                                        342.6 150.6z"/>
+                                            </svg>
+                                        </a>
+                                        <button type="submit" class="btn_valider button-type1 button-confirm">
+                                            VALIDER
+                                            <!-- check icon -->
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                                                <path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3
+                                                        0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5
+                                                        45.3 0z"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                    {{ form_end(form) }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block script %}
+    <script src="{{ asset("js/calculScoreConfort.js") }}"></script>
+    <script src="{{ asset("js/modeAdmin.js") }}"></script>
+    <script src="{{ asset("js/affichageDashboard.js") }}"></script>
+{% endblock %}

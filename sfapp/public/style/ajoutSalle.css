@@ -1,0 +1,102 @@
+/* --- NAV GAUCHE --- */
+#nav-lien-salles{
+    opacity: 100%;
+}
+
+#nav-lien-salles .nav-lien-selection{
+    border-left: 5px solid var(--blanc);
+    height: 100%;
+}
+
+#page-body
+{
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+/* --- FORMULAIRE --- */
+#form-content {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--container);
+    border-radius: 15px;
+    padding: 2vw 4vw;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    width: 60vw;
+    max-height: 65vh;
+    overflow: auto;
+}
+
+/* parties du formulaire */
+.form-part{
+    margin-bottom: 1.2vw;
+}
+
+.form-part p{
+    font-size: 1.8vw;
+    padding-bottom: 0.5vw;
+}
+
+.form-part-title{
+    display: flex;
+    flex-direction: row;
+    border-bottom: 2px solid var(--input);
+    align-items: center;
+    margin-bottom: 1vw;
+}
+
+.form-part-title-fac{
+    font-size: 1.3vw !important;
+    color: #AAAAAA;
+    margin-left: 0.5vw;
+}
+
+/* informations principales sur la salle */
+#parent_salle{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#parent_salle div{
+    width: 45%;
+    display: flex;
+    justify-content: space-between;
+    margin:1vh;
+}
+
+/* details de la salle */
+#parent_detailsSalle{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+#parent_detailsSalle div{
+    width: 45%;
+    display: flex;
+    justify-content: space-between;
+    margin:1vh;
+}
+
+select{
+    width: 59%;
+}
+
+input{
+    width: 55%;
+}
+
+/* inputs du formulaire */
+.custom-select-class{
+    border: none;
+    border-radius: 5px;
+    padding: 5px 8px;
+    font-family: Poppins, serif;
+    background-color: var(--input);
+    font-style: italic;
+    color: var(--gris);
+    min-width: 4vw;
+}

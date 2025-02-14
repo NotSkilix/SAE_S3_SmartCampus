@@ -1,0 +1,71 @@
+name: 'but-info2-a-sae3'
+
+services:
+  nginx:
+    build:
+      context: .
+      dockerfile: ./build/nginx/Dockerfile
+    image: ${COMPOSE_PROJECT_NAME}-nginx
+    container_name: ${COMPOSE_PROJECT_NAME}-nginx
+    volumes:
+      - type: bind
+        source: ./sfapp
+        target: /app/sfapp
+    depends_on:
+      - sfapp
+    ports:
+      - 8000:80
+    networks:
+      - network
+  sfapp:
+    build:
+      args:
+        USER_ID: ${USER_ID:-0}
+        GROUP_ID: ${GROUP_ID:-0}
+        USER_NAME: ${USER_NAME:-0}
+        GROUP_NAME: ${GROUP_NAME:-0}
+      context: .
+      dockerfile: ./build/sfapp/Dockerfile
+    image: ${COMPOSE_PROJECT_NAME}-sfapp
+    container_name: ${COMPOSE_PROJECT_NAME}-sfapp
+    volumes:
+      - type: bind
+        source: ./sfapp
+        target: /app/sfapp
+    depends_on:
+      - database
+    networks:
+      - network
+  database:
+    build:
+      context: .
+      dockerfile: ./build/database/Dockerfile
+    image: ${COMPOSE_PROJECT_NAME}-database
+    container_name: ${COMPOSE_PROJECT_NAME}-database
+    ports:
+      - 3306:3306
+    volumes:
+      - type: volume
+        source: database-volume
+        target: /var/lib/mysql
+    environment:
+      MYSQL_DATABASE: dbsfapp
+      MYSQL_ROOT_PASSWORD: rdbsfapp
+      MYSQL_USER: udbsfapp
+      MYSQL_PASSWORD: pdbsfapp
+    networks:
+      - network
+
+networks:
+  network:
+    name : ${COMPOSE_PROJECT_NAME}-network
+    driver: bridge
+
+volumes:
+  database-volume:
+    driver: local
+
+
+
+
+

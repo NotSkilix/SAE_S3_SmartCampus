@@ -1,0 +1,653 @@
+/* --- NAV GAUCHE --- */
+#nav-lien-dashboard .nav-lien-selection{
+    border-left: 5px solid var(--blanc);
+    height: 100%;
+}
+
+#nav-lien-dashboard{
+    opacity: 100%;
+}
+
+#page-body{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+
+}
+
+.page-batiment-button{
+    background-color: #FFFFFF;
+    display : flex;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 0.5vw;
+    color :var(--vert);
+    width :23vw;
+    height :6vh;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    transition: background-color 0.3s;
+    cursor : pointer;
+}
+.page-batiment-button:hover{
+    background-color: var(--bouton_inactif);
+    color: var(--container);
+}
+
+#box-welcome{
+    background-color: var(--container);
+    border-radius: 0.8vw;
+    width: 51%;
+    height : 45%;
+    display : flex;
+    align-items: center;
+
+}
+#box-welcome-info{
+    width:35vw;
+    padding-left: 3vw;
+    display :flex;
+    gap:1vw;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+#box-welcome-info h1 {
+    letter-spacing: 0.1vw;
+    font-weight : 600;
+}
+
+#box-welcome-info h3 {
+    font-weight : 600;
+    font-size : 1vw;
+    color: rgba(0, 0, 0, 0.8);
+}
+
+#box-welcome-info #date {
+    color: var(--vert);
+}
+
+
+#box-score {
+    background-color: var(--container);
+    border-radius: 0.8vw;
+    width: calc(85vw * 0.43);
+    height : calc(90vh * 0.45);
+    display : flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#box-score .box-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin: 0 2vw 3vh;
+}
+
+#box-score .box-title svg {
+    fill: var(--vert);
+    stroke: var(--vert);
+    margin-right: 1vw;
+}
+
+#box-score .box-title h1 {
+    font-weight: 600;
+    font-size: calc(1vh + 1vw);
+}
+
+#box-score .box-content {
+    display: flex;
+    margin: 0 2vw;
+    align-items: center;
+}
+
+#box-score .box-content .score-value {
+    color: var(--vert);
+    font-weight: 600;
+    font-size: 3vw;
+    width: 8vw;
+    text-align: center;
+}
+
+#box-score .box-content .separator {
+    margin: 0 1vw;
+    border: solid 1px #D9D9D9;
+    border-radius: 1px;
+    height: 90%;
+}
+
+#box-score .box-content .score-explanation {
+    color: rgba(0, 0, 0, 0.8);
+    font-size: 1vw;
+}
+
+#box-score .box-button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: calc(100% - 4vw);
+    border-radius: 0.5vw;
+    height :6vh;
+    margin-top: 3vh;
+    background-color: var(--blanc);
+    color: var(--vert);
+    font-weight: 600;
+    text-decoration: none;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    transition: background-color 0.3s;
+}
+
+#box-score .box-button:hover {
+    background-color: var(--bouton_inactif);
+    color: var(--container);
+}
+
+#box-score .box-button svg {
+    fill: var(--vert);
+    width: 3vh;
+    height: 3vh;
+    margin-right: 1vw;
+}
+
+#box-plans{
+
+    border-radius: 0.8vw;
+    width: 51%;
+    height : 45%;
+
+
+}
+    .list-install{
+        width: 100%;
+        height : 47%;
+        background-color: var(--container);
+        border-radius: 0.8vw;
+        display :flex;
+        align-items: center;
+        margin-bottom: 2vh;
+
+        flex-wrap: wrap;
+    }
+        #list-install-title  {
+            width: 100%;
+            height :5vh;
+            display: flex;
+            justify-content: flex-start;
+            margin-left: 1vw;
+            gap : 0.8vw;
+            align-items: center;
+
+        }
+
+        .list-ligne{
+            border-bottom: solid 0.3vh rgba(104, 99, 99, 0.6);
+            margin-left: 1.5vw;
+            width: 90%;
+        }
+        #list-install-description{
+
+            height :10vh;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            gap : 1vw;
+            margin-left: 2.5vw;
+        }
+
+        .page-button{
+            background-color: #FFFFFF;
+            display : flex;
+            justify-content: space-around;
+            align-items: center;
+            border-radius: 0.5vw;
+
+            width :10vw;
+            height :6vh;
+            box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+            transition: background-color 0.3s;
+            cursor : pointer;
+        }
+
+        .page-button:hover{
+            background-color: var(--bouton_inactif);
+            color: var(--container);
+        }
+
+
+
+
+    .list-intervention{
+        width: 100%;
+        height : 47%;
+        background-color: var(--container);
+        border-radius: 0.8vw;
+        display :flex;
+        align-items: center;
+        margin-bottom: 2vh;
+
+        flex-wrap: wrap;
+    }
+        #list-intervention-title  {
+            width: 100%;
+            height :5vh;
+            display: flex;
+            justify-content: flex-start;
+            margin-left: 1vw;
+            gap : 0.8vw;
+            align-items: center;
+
+        }
+        #list-intervention-description{
+
+            height :10vh;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            gap : 1vw;
+            margin-left: 2.5vw;
+        }
+
+
+
+
+.box-advice{
+    background-color: var(--container);
+    border-radius: 0.8vw;
+    margin-left: 1vw;
+    width: 96%;
+    height : 45%;
+    display : flex;
+    flex-direction: column;
+}
+
+#box-info{
+    background-color: var(--container);
+    border-radius: 0.8vw;
+    width: 43%;
+    height : 45%;
+    display : flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+/* ------------------------------------------------------**-- affichage des notes ------------------------------------------------------------------ */
+
+.titre_probleme_note{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 90%;
+    font-size: calc(1vw + 1vh);
+    margin-top: 1vh;
+}
+
+.titre_probleme_note p{
+    margin-left: 2vw;
+}
+
+.titre_probleme_note svg{
+    margin-left: 2vw;
+}
+
+.separator_note{
+    background-color: #686363;
+    border-radius: 0.5vw;
+    border: 0.1vh solid rgba(104, 99, 99, 0.8);
+    opacity: 80%;
+    width: 90%;
+    margin-top: 1vh;
+}
+
+.body_probleme{
+    overflow-y: scroll;
+    height : 50vh;
+    margin-top: 1vh;
+    width: 90%;
+    display:flex;
+    flex-wrap: wrap;
+    gap : 3vh;
+}
+
+
+.note_probleme {
+    transition: box-shadow 0.3s ease; /* Transition fluide */
+    background-color: var(--blanc);
+    border-radius: 10px;
+    border: 1px solid var(--probleme);
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0); /* Aucun effet initial */
+}
+
+.note_probleme:hover {
+    box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.4); /* Effet plus discret */
+}
+
+.header_note_probleme{
+    display: flex;
+    align-items: start;
+    background-color: var(--probleme);
+    color: var(--blanc);
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    font-size: calc(0.7vh + 0.7vw);
+}
+
+.header_note_probleme svg{
+    stroke: var(--blanc);
+    height: 3vh;
+    width: 3vw;
+    fill:none;
+    stroke-width: calc(0.05vw + 0.05vh);
+}
+
+.text_note_probleme{
+    color: #717171;
+    display: flex;
+    padding-left: 0.5vw;
+    padding-top: 0.8vh;
+}
+
+.marquelu_note{
+    background-color: white;
+    color: var(--noir);
+    padding: 0.1vh 0.5vw;
+    font-size: calc(0.5vh + 0.5vw);
+    border-radius: 5px;
+    text-decoration: none;
+    margin-left: 0.5vw;
+    margin-top: 0.3vh;
+}
+
+.marquelu_note:hover{
+    background-color: var(--container);
+    transition: 0.2s;
+
+}
+
+
+.plan_note{
+    background-color: white;
+    color: var(--noir);
+    padding: 0.1vh 0.5vw;
+    font-size: calc(0.5vh + 0.5vw);
+    border-radius: 5px;
+    text-decoration: none;
+    margin-left: 10vw;
+    margin-top: 0.3vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.plan_note:hover{
+    background-color: var(--container);
+    transition: 0.2s;
+}
+
+.plan_note svg{
+    height: 1.5vh;
+    width: 1.5vw;
+    stroke-width: 0;
+}
+
+
+#box-advice-info{
+    padding-top: 1.5vw;
+    height : 90%;
+}
+
+#advice-title{
+    display : flex;
+    font-size : 1.5vw;
+    width: 100%;
+    padding-left: 2vw;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0.8vw;
+}
+
+#conseils-box{
+    display : flex;
+    gap : 1.8vw;
+    padding : 2vw;
+    flex-wrap: wrap;
+    overflow: auto;
+    height: 20vh;
+}
+
+#conseils{
+
+    width: 24.2vw;
+    height: 17vh;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ombre subtile */
+    background-color: white;
+    border-radius: 0.8vw;
+    margin-bottom: 2vh;
+    display : flex;
+    flex-wrap: wrap;
+
+}
+
+#conseils-salle{
+    background-color: #D9D9D9;
+    width: 50%;
+    height: 60%;
+    border-top-left-radius: 0.8vw;
+    display :flex;
+    flex-wrap : wrap;
+    justify-content: center;
+    align-items: center;
+
+}
+    #conseils-salle-top{
+        display : flex;
+        justify-content: space-around;
+        align-items: center;
+        width: 90%;
+        padding-left: 0.5vw;
+        font-size: 1.05vw;
+
+    }
+
+    #conseils-salle-bot{
+        display : flex;
+        justify-content: flex-start;
+        align-items: center;
+        width: 90%;
+        gap : 0.8vw;
+        padding-left: 0.5vw;
+        font-size: 1.05vw;
+
+    }
+
+#conseils-description{
+    display: flex;
+    width: 11vw;
+    font-weight: 600;
+    height: 50%;
+    font-size: 0.8vw;
+    gap: 1vw;;
+    padding-left: 0.5vw;
+    justify-content: space-around;
+    align-items: center;
+
+}
+
+#conseils-text{
+    width : 100%;
+    background-color: #686363;
+    color : white;
+    font-weight: 500;
+    height: 40%;
+    border-bottom-left-radius: 0.8vw;
+    border-bottom-right-radius: 0.8vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.8vw;
+}
+
+.item-note{
+    width: 24.2vw;
+    height: 17vh;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ombre subtile */
+    background-color: white;
+    border-radius: 0.8vw;
+    margin-bottom: 2vh;
+    display : flex;
+    flex-wrap: wrap;
+}
+
+#item-note-titre{
+    background-color: #D9D9D9;
+    width: 35%;
+    height: 50%;
+    border-top-left-radius: 0.8vw;
+    display :flex;
+    flex-wrap : wrap;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+
+}
+
+#item-note-conseil{
+    width : 35%;
+
+
+    font-size: 0.7vw;
+    background-color: #686363;
+    border-bottom-left-radius: 0.8vw;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+#item-note-description {
+    display: flex;
+    width: 13.8vw;
+    font-weight: 600;
+    height: 50%;
+    font-size: 0.8vw;
+    gap: 0.7vw;;
+    padding-left: 1vw;
+    justify-content: center;
+    align-items: center;
+}
+
+/* --- FENÊTRE AJOUT ETAGE --- */
+.custom-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--blanc);
+    width: 90%;
+    max-width: 30vw;
+    padding: calc(1vw + 1vh);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 11000;
+}
+
+/* contenu de la fenêtre */
+.custom-modal-content {
+    position: relative;
+}
+
+/* arrière-plan grisé */
+#modalBackdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 10000;
+}
+
+/* input pour l'ajout d'un etage */
+.form-control{
+    border: none;
+    border-radius: 5px;
+    padding: 0.6vh 0.5vw;
+    margin: 0.3vw;
+    font-family: Poppins, serif;
+    background-color: var(--input);
+    font-style: italic;
+    font-size: 0.9vw;
+    color: var(--gris);
+    min-width: 16vw;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    resize: none;
+}
+
+#item-note-bot{
+    width : 65%;
+    background-color: #686363;
+    color : white;
+    font-weight: 500;
+    height: 70%;
+
+    border-bottom-right-radius: 0.8vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.8vw;
+    flex-wrap: wrap;
+}
+
+
+
+#button-note{
+
+    background: var(--blanc);
+    color : black;
+    padding : 0.13vw;
+    width: 14.5vw;
+    border-radius: 0.5vw;
+    font-size: 0.78vw;
+    display: flex;
+    align-items: center;
+    border: none;
+}
+
+#button-note:hover{
+
+    background: var(--container);
+    transition: background-color 0.15s;
+    color : black;
+    padding : 0.13vw;
+    width: 14.5vw;
+    border-radius: 0.5vw;
+    font-size: 0.78vw;
+    display: flex;
+    align-items: center;
+}
+
+
+/* boutons de la fenêtre d'ajout d'un étage */
+.btn_form{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-top: 2vh;
+}
+
+/* séparations des formulaires */
+.separation_form{
+    width: 100%;
+    border: 2px solid var(--input);
+    margin-top: 3vh;
+    margin-bottom: 3vh;
+    border-radius: 100px;
+}

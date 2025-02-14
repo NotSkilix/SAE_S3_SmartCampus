@@ -1,0 +1,313 @@
+/* --- NAV GAUCHE --- */
+#nav-lien-plan .nav-lien-selection{
+    border-left: 5px solid var(--blanc);
+    height: 100%;
+}
+
+#nav-lien-plan{
+    opacity: 100%;
+}
+
+#page-body{
+    justify-content: space-evenly;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* spérateur entre les filtres et les boutons */
+#separator{
+    height: 2vw;
+    border-left: 0.15vw solid rgba(0,0,0,0.25);
+}
+
+/* --- FILTRES ET BOUTONS ---*/
+#plan-gestion-box{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: row;
+    width: 100%;
+    height: 20vh;
+}
+
+#list-etat{
+    width: 20%;
+}
+
+#search-bar{
+    width: 20%;
+}
+
+.plan-btn{
+    display: flex;
+    justify-content: center;
+    min-width: 15%;
+    padding: 0.3vw 0.8vw 0.3vw 0.8vw;
+    background-color: var(--vert);
+    border-radius: 0.5vw;
+    color: var(--blanc);
+    font-size: 1.2vw;
+    box-shadow: 0 0 0.4em rgba(0, 0, 0, 0.25);
+}
+
+.plan-btn:hover{
+    opacity: 0.8;
+}
+
+/* --- LISTE DES PLANS --- */
+#plan-list{
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    height: 70vh;
+    width: 100%;
+    overflow: auto;
+}
+
+/* chaque plan */
+.plan{
+    width: 27%;
+    height: 10vw;
+    margin-bottom: 2vw;
+    position: relative;
+    transform: translateY(20px); /* L'élément est légèrement décalé vers le bas */
+    transition: opacity 0.5s ease, transform 0.5s ease; /* Animation fluide */
+}
+
+/* partir visible des plans */
+.plan-main{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    position: absolute;
+    width: 100%;
+    background-color: var(--container);
+    height: 65%;
+    border-top-right-radius: 1vw;
+    border-top-left-radius: 1vw;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+/* partie gauche des plans */
+.plan-main-left{
+    width: 30%;
+    height: 75%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+/* nom de la salle */
+.plan-main-left-salle{
+    font-size: 1.2vw;
+}
+
+/* nom de l'étage */
+.plan-main-left-etage{
+    display: flex;
+    align-items: center;
+    font-size: 0.9vw;
+    height: 90%;
+}
+
+.plan-main-left-etage svg{
+    width: 1.5vw;
+    margin-right: 0.4vw;
+}
+
+.plan-main-left-etage p{
+    width: 82%;
+    color: #717171;
+}
+
+/* spérateur entre partie droite et gauche des plans */
+.plan-separator{
+    width: 0.2vw;
+    height: 9vh;
+    border-radius: 1vw;
+    background-color: rgba(0,0,0,0.25);
+}
+
+/* partie droite des plans */
+.plan-main-right{
+    width: 55%;
+    height: 85%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: flex-start;
+}
+
+/* liste des sa */
+.plan-main-right-list{
+    height: 90%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    overflow: auto;
+}
+
+/* chaque sa */
+.plan-main-right-list-item{
+    width: 95%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.6vh;
+    border-radius: 0.2vw;
+}
+
+.plan-main-right-list-item:hover{
+    background-color: rgba(202, 202, 202, 0.4);
+}
+
+/* nom de chaque sa */
+.plan-main-right-list-item-sa{
+    display: flex;
+    justify-content: flex-start;
+}
+
+.plan-main-right-list-item-sa *{
+    margin-right: 0.4vw;
+}
+
+/* bouton des suppression des sa */
+.plan-main-right-btn{
+    opacity: 0;
+    border: 0;
+    background-color: var(--rouge);
+    border-radius: 0.2vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.3vw;
+}
+
+.plan-main-right-list-item:hover .plan-main-right-btn{
+    transition: 0.2s;
+    opacity: 1;
+}
+
+/* etat des sa */
+.plan-main-right-etat{
+    background-color: var(--vert);
+    height: 3vh;
+    width: 0.5vw;
+}
+
+.plan-main-right-etat:hover .plan-main-right-etat-popup{
+    display: flex;
+}
+
+/* popup de l'état des sa */
+.plan-main-right-etat-popup{
+    display: none;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.85vw;
+    position: absolute;
+    top: var(--mouse-y); /* Position dynamique basée sur la souris */
+    left: var(--mouse-x);
+    transform: translate(-18%, +88%);
+    min-width: 8vw;
+    min-height: 5vh;
+    border-radius: 0.2vw;
+}
+
+.plan-main-right-etat-popup p{
+    color: var(--blanc);
+}
+
+.plan-main-right-etat-popup-arrow {
+    content: "";
+    position: fixed;
+    bottom: 100%;
+    left: 20%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid;
+    background-color: transparent !important;
+}
+
+.plan-main-right-title{
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* bouton d'ajout d'un sa */
+.plan-main-right-title-button{
+    width: 3vw;
+    height: 3vh;
+    border: 0;
+    border-radius: 0.2vw;
+    opacity: 0;
+    background-color: var(--input);
+    color: var(--gris);
+}
+
+.plan-main:hover .plan-main-right-title-button{
+    transition: 0.2s;
+    opacity: 1;
+}
+
+.plan-main-right-title-button:hover{
+    background-color: var(--gris);
+    color: var(--input);
+}
+
+/* partie invisible des plans (bouton détails) */
+.plan-voir-infos{
+    position: absolute;
+    background-color: var(--input_texte);
+    color: var(--blanc);
+    border-radius: 1vw;
+    width: 100%;
+    height: 65%;
+    top: 0;
+    left: 0;
+    transition: 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding-bottom: 0.4vw;
+}
+
+.plan-voir-infos:hover{
+    cursor: pointer;
+}
+
+.plan:hover .plan-voir-infos{
+    top: 4vh;
+}
+
+svg{
+    width: 1.2vw;
+}
+
+/* --- COULEURS DES ETATS --- */
+.Intervention{ /* état 'Intervention nécessaire' */
+    background-color: var(--intervention_necessaire);
+    color: var(--intervention_necessaire);
+}
+
+.À{ /* état 'À installer' */
+    background-color: var(--a_installer);
+    color: var(--a_installer);
+}
+
+.En{ /* état 'En stock' */
+    background-color: var(--en_stock);
+    color: var(--en_stock);
+}
+
+.Fonctionnel{ /* état 'Fonctionnel' */
+    background-color: var(--fonctionnel);
+    color: var(--fonctionnel);
+}
