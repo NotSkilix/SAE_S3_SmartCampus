@@ -88,7 +88,7 @@ Confirmez que vous souhaitez écraser les données de la base, puis patientez le
 
 Enfin, pour lancer le rafraichissement des données avec celles de l'API, exécuter la commande :
 ```bash
-php bin/console app:run_scheduler
+php bin/console app:run-scheduler
 ```
 
 ## Accéder à l'application web
