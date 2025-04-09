@@ -1,11 +1,11 @@
 # SAE34 : Projet SMART-CAMPUS
 
 > Groupe K2-2 :
-> - Corentin REMAUD **(PO)**
-> - Axel BOURDY **(SM)**
-> - Victor GIGNOUX
-> - Côme LENAIN
-> - Julien RAVILLY
+> - Corentin **(PO)**
+> - Axel **(SM)**
+> - Victor
+> - Côme
+> - Julien
 
 --- 
 Contenu : 
